@@ -50,7 +50,7 @@ code { font-size: 14px; color: #3232b7; }
     top: 17px;
     z-index: 6;
     font-size: 17px;
-    color: #07382a;
+    color: #009e3d;
 }
 .form-inline.search.line-search .form-control {
     width: 100%;
@@ -83,7 +83,7 @@ code { font-size: 14px; color: #3232b7; }
     top: 17px;
     z-index: 6;
     font-size: 17px;
-    color: #07382a;
+    color: #009e3d;
 }
 .form-inline.search .form-control {
     width: 100%;
@@ -404,7 +404,7 @@ code { font-size: 14px; color: #3232b7; }
 }
 
 .c-3 button {
-    background-color: #435852;
+    background-color: #146329;
 }
 
 

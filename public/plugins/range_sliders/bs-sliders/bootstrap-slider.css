@@ -126,7 +126,7 @@
     transform: translateX(-50%);
     border-left: 6px solid transparent;
     border-right: 6px solid transparent;
-    border-top: 6px solid #435852;
+    border-top: 6px solid #146329;
 }
 .slider.slider-horizontal.slider-rtl .tooltip {
   -ms-transform: translateX(50%);
@@ -218,7 +218,7 @@
 .slider .tooltip-inner {
   white-space: nowrap;
   max-width: none;
-  background-color: #435852;
+  background-color: #146329;
   border-radius: 30px;
   padding: 4px 17px;
 }
