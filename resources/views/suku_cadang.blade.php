@@ -54,11 +54,58 @@
                                                             </button>
                                                         </div>
                                                         <div class="modal-body">
-                                                            <h4 class="modal-heading mb-4 mt-2">Why We Use Electoral College, Not Popular Vote</h4>
+                                                            <form>
+                                                                <div class="form-group mb-4">
+                                                                    <label for="exampleFormControlInput1">Nama Kegiatan</label>
+                                                                    <input required type="text" name="nama_kegiatan" class="form-control" id="exampleFormControlInput1" placeholder="Nama kegiatan..">
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group mb-4">
+                                                                            <label for="exampleFormControlInput2">Tanggal Mulai</label>
+                                                                            <input required type="date" class="form-control" id="exampleFormControlInput2" placeholder="nama kegiatan..">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group mb-4">
+                                                                            <label for="exampleFormControlInput2">Tanggal Selesai</label>
+                                                                            <input required type="date" class="form-control" id="exampleFormControlInput2" placeholder="nama kegiatan..">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                
+                                                                <div class="form-group mb-4">
+                                                                    <label for="exampleFormControlSelect1">Jenis Anggaran</label>
+                                                                    <select class="form-control" id="exampleFormControlSelect1">
+                                                                        <option>1</option>
+                                                                        <option>2</option>
+                                                                    </select>
+                                                                </div>
+                                                                <!-- <div class="form-group mb-4">
+                                                                    <label for="exampleFormControlTextarea1">Example textarea</label>
+                                                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                                                </div> -->
+                                                                <div class="form-group mb-4">
+                                                                    <label for="exampleFormControlInput3">Jenis Anggaran</label>
+                                                                    <div class="input-group mb-4">
+                                                                        <div class="input-group-prepend">
+                                                                            <span class="input-group-text">Rp</span>
+                                                                        </div>
+                                                                        <input type="number" id="exampleFormControlInput3" class="form-control" aria-label="Amount (to the nearest rupiah)">
+                                                                        <div class="input-group-append">
+                                                                            <span class="input-group-text">.00</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <!-- <div class="form-group mb-4 mt-3">
+                                                                    <label for="exampleFormControlFile1">Example file input</label>
+                                                                    <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                                                                </div> -->
                                                         </div>   
                                                         <div class="modal-footer">
-                                                            <button type="button" class="btn btn-primary btn-rounded mb-4 mt-2">Save changes</button>
-                                                            <button type="button" class="btn btn-dark btn-rounded mb-4 mt-2" data-dismiss="modal">Close</button>
+                                                            <button type="submit" class="btn btn-primary btn-rounded mb-4 mt-2">Ajukan</button>
+                                                            </form>
+                                                            <button type="button" class="btn btn-dark btn-rounded mb-4 mt-2" data-dismiss="modal">Batal</button>
                                                         </div>
                                                     </div>
                                                 </div>

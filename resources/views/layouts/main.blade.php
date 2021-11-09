@@ -62,16 +62,16 @@
     
     <!-- Tab Mobile View Header -->
     <header class="tabMobileView header navbar fixed-top d-lg-none">
-        <div class="nav-toggle">
+        <div class="nav-toggle" style="margin-top:5px;">
                 <a href="javascript:void(0);" class="nav-link sidebarCollapse" data-placement="bottom">
-                    <i class="flaticon-menu-line-2"></i>
+                    <i class="flaticon-menu-line-2" style="color: white;"></i>
                 </a>
             <a href="index.html" class=""> <img src="assets/img/logo-3.png" class="img-fluid" alt="logo"></a>
         </div>
         <ul class="nav navbar-nav flex-row ml-lg-auto">
             <li class="nav-item dropdown cs-toggle d-lg-none"> 
                 <a href="#" class="nav-link toggle-control-sidebar suffle">
-                    <span class="flaticon-user-fill d-lg-none" style = "margin-right: 20px;"></span>
+                    <i class="flaticon-user-fill d-lg-none" style = "margin-top: 8px; margin-right:30px; font-size: 1.5em; color: white;"></i>
                 </a>
             </li>
         </ul>

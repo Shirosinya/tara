@@ -286,9 +286,6 @@
     width: 35px;
     height: 35px;
 }
-.navbar .navbar-nav .nav-item.notification-dropdown .dropdown-item.footer {
-
-}
 .navbar .navbar-nav .nav-item.notification-dropdown .dropdown-item.footer span {
     vertical-align: middle;
     color: #3862f5;
@@ -602,9 +599,6 @@ header.navbar:not(.tabMobileView) .navbar-nav .nav-item form.form-inline:before 
     padding: 3px 15px;
     line-height: 1.3;
 }
-#sidebar ul.menu-categories li.menu:first-child ul.submenu {
-
-}
 #sidebar ul.menu-categories li.menu:first-child ul.submenu > li a {
     justify-content: flex-start;
     padding: 12px 12px 12px 35px;
@@ -761,7 +755,7 @@ header.navbar:not(.tabMobileView) .navbar-nav .nav-item form.form-inline:before 
 
 .control-sidebar {
     position: fixed;
-    top: 30px;
+    top: 40px;
     display: flex;
     height: 100vh;
     height: 97vh;
@@ -1106,9 +1100,6 @@ header.navbar:not(.tabMobileView) .navbar-nav .nav-item form.form-inline:before 
     color: #ee3d50;
     font-size: 16px;
 }
-.control-sidebar .tab-content .friends .recent .list-inline {
-
-}
 .control-sidebar .tab-content .friends .recent .list-inline li {
     position: relative;
 }
@@ -1127,9 +1118,6 @@ header.navbar:not(.tabMobileView) .navbar-nav .nav-item form.form-inline:before 
     width: 23px;
     border: solid 2px #fff;
 }
-.control-sidebar .tab-content .friends .recent .friend-request .d-flex {
-
-}
 .control-sidebar .tab-content .friends .recent .friend-request .d-flex .media i {
     background: #6156ce;
     padding: 9px;
@@ -1145,9 +1133,6 @@ header.navbar:not(.tabMobileView) .navbar-nav .nav-item form.form-inline:before 
 .control-sidebar .tab-content .friends .recent .friend-request .d-flex p {
     color: #ee3d50;
     font-size: 16px;
-}
-.control-sidebar .tab-content .friends .recent .friend-request .media {
-
 }
 .control-sidebar .tab-content .friends .recent .friend-request .media {
     padding: 10px;
@@ -1198,12 +1183,6 @@ header.navbar:not(.tabMobileView) .navbar-nav .nav-item form.form-inline:before 
 .control-sidebar .tab-content .friends {
     padding: 10px;
 }
-.control-sidebar .tab-content .friends .online {
-
-}
-.control-sidebar .tab-content .friends .online .t-s-header {
-
-}
 .control-sidebar .tab-content .friends .online .t-s-header h6 span {
     position: relative;
     font-size: 19px;
@@ -1222,9 +1201,6 @@ header.navbar:not(.tabMobileView) .navbar-nav .nav-item form.form-inline:before 
 .control-sidebar .tab-content .friends .online .t-s-header p {
     color: #ee3d50;
     font-size: 16px;
-}
-.control-sidebar .tab-content .friends .online .media {
-
 }
 .control-sidebar .tab-content .friends .online .media {
     padding: 10px;
@@ -1265,9 +1241,6 @@ header.navbar:not(.tabMobileView) .navbar-nav .nav-item form.form-inline:before 
 }
 .control-sidebar .tab-content .friends .away-stats {
     margin-bottom: 5rem;
-}
-.control-sidebar .tab-content .friends .away-stats .t-s-header {
-
 }
 .control-sidebar .tab-content .friends .away-stats .t-s-header h6 span {
     position: relative;
@@ -1418,10 +1391,6 @@ header.navbar:not(.tabMobileView) .navbar-nav .nav-item form.form-inline:before 
     color: #fff;
     border-radius: 5px;
 }
-.control-sidebar .tab-content .settings .general-setting .usr-status .d-flex {
-}
-.control-sidebar .tab-content .settings .general-setting .usr-status .d-flex .media {
-}
 .control-sidebar .tab-content .settings .general-setting .usr-status  .d-flex .media i {
     background: #25d5e4;
     padding: 9px;
@@ -1435,8 +1404,6 @@ header.navbar:not(.tabMobileView) .navbar-nav .nav-item form.form-inline:before 
     font-weight: 600;
     font-size: 20px;
     color: #1d1d1d;
-}
-.control-sidebar .tab-content .settings .general-setting .usr-status .media.stats  {
 }
 .control-sidebar .tab-content .settings .general-setting .usr-status .media.stats h6 {
     color: #3b3f5c;
@@ -1756,10 +1723,10 @@ header.navbar:not(.tabMobileView) .navbar-nav .nav-item form.form-inline:before 
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
-    .control-sidebar { top: 103px!important; }
+    .control-sidebar { top: 58px!important; }
 }
 @media (max-width: 767px) {
-    .control-sidebar { top: 104px!important; }
+    .control-sidebar { top: 59px!important; }
     .control-sidebar-scroll { height: 87.5%!important; }
 }
 
