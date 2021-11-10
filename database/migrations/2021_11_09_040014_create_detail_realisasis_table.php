@@ -18,7 +18,7 @@ class CreateDetailRealisasisTable extends Migration
             $table->string('nama_bukti',255);
             $table->datetime('tanggal');
             $table->integer('pengeluaran');
-            $table->binary('file_bukti');
+            $table->string('file_bukti')->nullable();
             $table->timestamps();
             $table->foreignId('id_realisasi');
         });

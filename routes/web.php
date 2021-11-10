@@ -23,8 +23,16 @@ Auth::routes();
 Route::group(['middleware' => ['auth']], function () 
 {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
     Route::get('/sukucadang', [App\Http\Controllers\SukuCadangController::class, 'index']);
+    Route::post('/sukucadang/mengajukan', [App\Http\Controllers\SukuCadangController::class, 'mengajukan'])->name('mengajukan');
+
     Route::get('/jasakonsultan',[App\Http\Controllers\JasaKonsultanController::class, 'index']);
+
+
     Route::get('/jasaaudit',[App\Http\Controllers\JasaAuditController::class, 'index']);
+
+
     Route::get('/jasaTKAD',[App\Http\Controllers\JasaKonsultanController::class, 'index']);
 });

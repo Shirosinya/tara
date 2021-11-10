@@ -18,7 +18,7 @@ class CreatePengajuansTable extends Migration
             $table->string('nama_kegiatan');
             $table->date('tanggal_mulai');
             $table->date('tanggal_selesai');
-            $table->enum('status',['pending','disetujui','ditolak']);
+            $table->enum('status',['pending','disetujui','ditolak'])->default('pending');
             $table->text('alasan_ditolak')->nullable();
             $table->integer('total_pengeluaran');
             $table->timestamps();

@@ -2,9 +2,11 @@
 @section('title','Suku Cadang')
 @section('content')
 
+
 <div id="content" class="main-content">
     <div class="container">
         <div class="page-header">
+        {!! Toastr::message() !!}
             <div class="page-title">
                 <!-- <h3>Suku Cadang</h3> -->
                 <div class="crumbs">
@@ -54,7 +56,8 @@
                                                             </button>
                                                         </div>
                                                         <div class="modal-body">
-                                                            <form>
+                                                            <form action="{{ route('mengajukan') }}" method="POST">
+                                                                @csrf
                                                                 <div class="form-group mb-4">
                                                                     <label for="exampleFormControlInput1">Nama Kegiatan</label>
                                                                     <input required type="text" name="nama_kegiatan" class="form-control" id="exampleFormControlInput1" placeholder="Nama kegiatan..">
@@ -63,35 +66,29 @@
                                                                     <div class="col-md-6">
                                                                         <div class="form-group mb-4">
                                                                             <label for="exampleFormControlInput2">Tanggal Mulai</label>
-                                                                            <input required type="date" class="form-control" id="exampleFormControlInput2" placeholder="nama kegiatan..">
+                                                                            <input required name="tanggal_mulai" type="date" class="form-control" id="exampleFormControlInput2" placeholder="nama kegiatan..">
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-md-6">
                                                                         <div class="form-group mb-4">
                                                                             <label for="exampleFormControlInput2">Tanggal Selesai</label>
-                                                                            <input required type="date" class="form-control" id="exampleFormControlInput2" placeholder="nama kegiatan..">
+                                                                            <input required name="tanggal_selesai" type="date" class="form-control" id="exampleFormControlInput2" placeholder="nama kegiatan..">
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                                 
-                                                                <div class="form-group mb-4">
-                                                                    <label for="exampleFormControlSelect1">Jenis Anggaran</label>
-                                                                    <select class="form-control" id="exampleFormControlSelect1">
-                                                                        <option>1</option>
-                                                                        <option>2</option>
-                                                                    </select>
-                                                                </div>
+                                                                <input type="hidden" class="form-control" name="id_tipe_akun" value="1">
                                                                 <!-- <div class="form-group mb-4">
                                                                     <label for="exampleFormControlTextarea1">Example textarea</label>
                                                                     <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                                                                 </div> -->
                                                                 <div class="form-group mb-4">
-                                                                    <label for="exampleFormControlInput3">Jenis Anggaran</label>
+                                                                    <label for="rupiah">Jumlah Anggaran</label>
                                                                     <div class="input-group mb-4">
                                                                         <div class="input-group-prepend">
                                                                             <span class="input-group-text">Rp</span>
                                                                         </div>
-                                                                        <input type="number" id="exampleFormControlInput3" class="form-control" aria-label="Amount (to the nearest rupiah)">
+                                                                        <input type="text" name="total_pengeluaran" id="rupiah" class="form-control" aria-label="Amount (to the nearest rupiah)">
                                                                         <div class="input-group-append">
                                                                             <span class="input-group-text">.00</span>
                                                                         </div>
@@ -115,63 +112,38 @@
                                                 <table id="default-ordering" class="table table-striped table-bordered table-hover" style="width:100%">
                                                     <thead>
                                                         <tr>
-                                                            <th>Name</th>
-                                                            <th>Position</th>
-                                                            <th>Age</th>
-                                                            <th>Start date</th>
-                                                            <th>Salary</th>
+                                                            <th>Nama Kegiatan</th>
+                                                            <th>Mulai</th>
+                                                            <th>Selesai</th>
+                                                            <th>Anggaran</th>
+                                                            <th>Status</th>
                                                             <th class="invisible"></th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
+                                                        @foreach($pengajuans as $pengajuan)
                                                         <tr>
-                                                            <td>Tiger Nixon</td>
-                                                            <td>System Architect</td>
-                                                            <td>61</td>
-                                                            <td>2011/04/25</td>
-                                                            <td>$320,800</td>
-                                                            <td class="text-center"><button class="btn btn-primary">View</button> </td>
+                                                            <td>{{$pengajuan->nama_kegiatan}}</td>
+                                                            <td>{{$pengajuan->tanggal_mulai}}</td>
+                                                            <td>{{$pengajuan->tanggal_selesai}}</td>
+                                                            <td>Rp. {{number_format($pengajuan->total_pengeluaran,2,',','.')}}</td>
+                                                            <td class="text-center">{!!$pengajuan->status == 'pending' ? '<span class="badge badge-pills badge-primary">Pending</span>' : ''!!}
+                                                            {!!$pengajuan->status == 'disetujui' ? '<span class="badge badge-pills badge-success">Disetujui</span>' : ''!!}
+                                                            {!!$pengajuan->status == 'ditolak' ? '<span class="badge badge-pills badge-danger">Ditolak</span>' : ''!!}
+                                                        </td>
+                                                            <td class="text-center"><button class="btn btn-primary">View</button>
+                                                            <button class="btn btn-warning">Edit</button>
+                                                            <button class="btn btn-danger">Delete</button></td>
                                                         </tr>
-                                                        <tr>
-                                                            <td>Garrett Winters</td>
-                                                            <td>Accountant</td>
-                                                            <td>63</td>
-                                                            <td>2011/07/25</td>
-                                                            <td>$170,750</td>
-                                                            <td class="text-center"><button class="btn btn-primary">View</button> </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Yuri Berry</td>
-                                                            <td>Chief Marketing Officer (CMO)</td>
-                                                            <td>40</td>
-                                                            <td>2009/06/25</td>
-                                                            <td>$675,000</td>
-                                                            <td class="text-center"><button class="btn btn-primary">View</button> </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Caesar Vance</td>
-                                                            <td>Pre-Sales Support</td>
-                                                            <td>21</td>
-                                                            <td>2011/12/12</td>
-                                                            <td>$106,450</td>
-                                                            <td class="text-center"><button class="btn btn-primary">View</button> </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Doris Wilder</td>
-                                                            <td>Sales Assistant</td>
-                                                            <td>23</td>
-                                                            <td>2010/09/20</td>
-                                                            <td>$85,600</td>
-                                                            <td class="text-center"><button class="btn btn-primary">View</button> </td>
-                                                        </tr>
+                                                        @endforeach
                                                     </tbody>
                                                     <tfoot>
                                                         <tr>
-                                                            <th>Name</th>
-                                                            <th>Position</th>
-                                                            <th>Age</th>
-                                                            <th>Start date</th>
-                                                            <th>Salary</th>
+                                                            <th>Nama Kegiatan</th>
+                                                            <th>Mulai</th>
+                                                            <th>Selesai</th>
+                                                            <th>Anggaran</th>
+                                                            <th>Status</th>
                                                             <th class="invisible"></th>
                                                         </tr>
                                                     </tfoot>

@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Pengajuan;
+use App\Models\TipeAkun;
+use Brian2694\Toastr\Facades\Toastr;
 
 class SukuCadangController extends Controller
 {
@@ -13,7 +16,8 @@ class SukuCadangController extends Controller
      */
     public function index()
     {
-        return view('suku_cadang');
+        $pengajuans = Pengajuan::where('id_tipe_akun', '=', '1')->get();
+        return view('suku_cadang', compact('pengajuans'));
     }
 
     /**
@@ -32,9 +36,25 @@ class SukuCadangController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function mengajukan(Request $request)
     {
-        //
+        $input = $request->all();
+        $pengeluaran = str_replace(".", "", $input['total_pengeluaran']);
+        if($data = Pengajuan::create([
+            'nama_kegiatan' => $input['nama_kegiatan'],
+            'tanggal_mulai' => $input['tanggal_mulai'],
+            'tanggal_selesai' => $input['tanggal_selesai'],
+            'total_pengeluaran' => $pengeluaran,
+            'id_tipe_akun' => $input['id_tipe_akun'],
+        ]))
+        {
+            Toastr::success('Berhasil Mengajukan!','Success');
+            return redirect()->back();
+        }else{
+            return redirect('/sukucadang')->with('danger','Terjadi Kesalahan Saat Penginputan!');
+        }
+
+        
     }
 
     /**
