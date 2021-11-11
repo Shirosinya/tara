@@ -25,6 +25,8 @@
     <!-- toastr -->
     <!-- <link href="plugins/notification/toastr/toastr.min.css" rel="stylesheet" type="text/css" /> -->
     <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
+    <script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+    <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
     <!-- END PAGE LEVEL STYLES -->
 
     <style>
@@ -58,6 +60,14 @@
             appearance: none;
         }
         select.form-control::-ms-expand { display: none; }
+
+        table.dataTable tr th.select-checkbox.selected::after {
+            content: "✔";
+            margin-top: -11px;
+            margin-left: -4px;
+            text-align: center;
+            text-shadow: rgb(176, 190, 217) 1px 1px, rgb(176, 190, 217) -1px -1px, rgb(176, 190, 217) 1px -1px, rgb(176, 190, 217) -1px 1px;
+        }
     </style>
     <!--  BEGIN CUSTOM STYLE FILE  -->
 </head>
@@ -225,8 +235,8 @@
                     <div class="usr-info text-center mb-5">
                         <img alt="admin-profile" src="assets/img/120x120.jpg" class="img-fluid rounded-circle mb-3">
                         <div class=" mt-2">
-                            <h5 class="usr-name mb-0">Linda Nelson</h5>
-                            <p class="usr-occupation mb-0 mt-1">Developer</p>
+                            <h5 class="usr-name mb-0">{{$user->username}}</h5>
+                            <p class="usr-occupation mb-0 mt-1">{{$user->name}}</p>
                         </div>
                         <br>
                         <form method="POST" action="{{ route('logout') }}">
@@ -290,20 +300,48 @@
     <script src="plugins/table/datatable/datatables.js"></script>
     <script>        
         $('#default-ordering').DataTable( {
+            "columnDefs": [
+            {
+                "targets": [ 6 ],
+                "sortable": false,
+                "searchable": false
+            }],
             "language": {
                 "paginate": { "previous": "<i class='flaticon-arrow-left-1'></i>", "next": "<i class='flaticon-arrow-right'></i>" },
                 "info": "Showing page _PAGE_ of _PAGES_"
-            }, "order": [[ 0, "asc" ]],
-            drawCallback: function () { $('.dataTables_paginate > .pagination').addClass(' pagination-style-13 pagination-bordered mb-5'); }
-	    } );
+            }, "order": [[ 0, "desc" ]],
+            drawCallback: function () { $('.dataTables_paginate > .pagination').addClass(' pagination-style-13 pagination-bordered mb-5'); },
 
+        } );
+        
         $('#default-ordering1').DataTable( {
             "language": {
                 "paginate": { "previous": "<i class='flaticon-arrow-left-1'></i>", "next": "<i class='flaticon-arrow-right'></i>" },
                 "info": "Showing page _PAGE_ of _PAGES_"
-            }, "order": [[ 0, "asc" ]],
-            drawCallback: function () { $('.dataTables_paginate > .pagination').addClass(' pagination-style-13 pagination-bordered mb-5'); }
+            },
+            "order": [[ 0, "desc" ]],
+            // "columnDefs": [
+            // {
+            //     "targets": [ 6 ],
+            //     "sortable": false,
+            //     "searchable": false
+            // },
+            drawCallback: function () { $('.dataTables_paginate > .pagination').addClass(' pagination-style-13 pagination-bordered mb-5'); },
 	    } );
+    </script>
+    <script>
+        $("#head-cb").on('click',function(){
+            if($("#head-cb").prop('checked')==true){
+                $(".cb-child").prop('checked',true)
+            }else{
+                $(".cb-child").prop('checked',false)
+            }
+        })
+        $("#default-ordering").on('click','.cb-child',function(){
+            if($(this).prop('checked')!=true){
+                $("#head-cb").prop('checked',false)
+            }
+        })
     </script>
     <script type="text/javascript">
 		
@@ -332,7 +370,6 @@
 			return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
 		}
 	</script>
-    <script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
-    <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+
         
     <!-- END PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
