@@ -75,9 +75,34 @@ class SukuCadangController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function setujuiPengajuan(Request $request)
     {
-        //
+        Pengajuan::whereIn('id',$request->ids)->update([
+            'status' => 'disetujui',
+        ]);
+        Toastr::success('Berhasil Menyetujui Pengajuan','Success');
+        return response()->json(true);
+    }
+
+    public function tolakPengajuan(Request $request)
+    {
+        Pengajuan::whereIn('id',$request->ids)->update([
+            'status' => 'ditolak',
+        ]);
+        Toastr::success('Berhasil Menolak Pengajuan','Success');
+        return response()->json(true);
+    }
+
+    public function alasanPenolakan(Request $request, $id)
+    {
+        $request->validate([
+            'alasan_ditolak' => 'required|max:255',
+        ]);
+        Pengajuan::where('id','=',$id)->update([
+            'alasan_ditolak' => $request['alasan_ditolak'],
+        ]);
+        Toastr::success('Berhasil Menyimpan Alasan Penolakan','Success');
+        return redirect()->back();
     }
 
     /**

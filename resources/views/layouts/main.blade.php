@@ -336,12 +336,68 @@
             }else{
                 $(".cb-child").prop('checked',false)
             }
+            if($("#head-cb").prop('checked')==true){
+                $("#buttonSetujui").prop('disabled',false)
+                $("#buttonDitolak").prop('disabled',false)
+            }else{
+                $("#buttonSetujui").prop('disabled',true)
+                $("#buttonDitolak").prop('disabled',true)
+            }
         })
+        let yangDicheck = 0;
         $("#default-ordering").on('click','.cb-child',function(){
             if($(this).prop('checked')!=true){
                 $("#head-cb").prop('checked',false)
             }
+            let semua_checkbox = $("#default-ordering .cb-child:checked")
+            if(semua_checkbox.length > 0){
+                $("#buttonSetujui").prop('disabled',false)
+                $("#buttonDitolak").prop('disabled',false)
+            }else{
+                $("#buttonSetujui").prop('disabled',true)
+                $("#buttonDitolak").prop('disabled',true)
+            }
         })
+
+    function setujuiButton(){
+        let checkbox_terpilih = $("#default-ordering .cb-child:checked")
+        let semua_id = []
+        $.each(checkbox_terpilih, function(index,elm){
+            semua_id.push(elm.value)
+        })
+        $("#buttonSetujui").prop('disabled',true)
+        $.ajax({
+            url:"{{url('')}}/sukucadang/setujui/pengajuan",
+            method:"post",
+            data:{ids:semua_id},
+            success:function(result){
+                // if(result === "no_errors"){
+                //     location.href = "/sukucadang/setujui/pengajuan"
+                // }
+                window.top.location.reload(true)
+                $("#buttonSetujui").prop('disabled',false)
+            }
+        })
+    }
+
+    function tolakButton(){
+        let checkbox_terpilih = $("#default-ordering .cb-child:checked")
+        let semua_id = []
+        $.each(checkbox_terpilih, function(index,elm){
+            semua_id.push(elm.value)
+        })
+        $("#buttonDitolak").prop('disabled',true)
+        $.ajax({
+            url:"{{url('')}}/sukucadang/tolak/pengajuan",
+            method:"post",
+            data:{ids:semua_id},
+            success:function(result){
+                // console.log("berhasil tolak")
+                window.top.location.reload(true)
+                $("#buttonDitolak").prop('disabled',false)
+            }
+        })
+    }
     </script>
     <script type="text/javascript">
 		

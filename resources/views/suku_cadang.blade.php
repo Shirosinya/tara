@@ -120,6 +120,9 @@
                                                 </div>
                                             </div>
                                             <!-- Modal Tambah Pengajuan End -->
+                                            @elseif($user->role_id == '2')
+                                            <button disabled id="buttonSetujui" onclick="setujuiButton()" class="btn btn-warning mb-4 mr-2">Setujui Yang Dipilih</button>
+                                            <button disabled id="buttonDitolak" onclick="tolakButton()" class="btn btn-danger mb-4 mr-2">Tolak Yang Dipilih</button>
                                             @endif
                                             <div class="table-responsive mb-4">
                                                 <table id="default-ordering" class="table table-striped table-bordered table-hover" style="width:100%">
@@ -131,12 +134,17 @@
                                                             <th>Selesai</th>
                                                             <th>Anggaran</th>
                                                             <th>Status</th>
-                                                            <th>
+                                                            @if($user->role_id == '1')
+                                                            <th class="invisible"></th>
+                                                            @else
+                                                            <th style="text-align: center; vertical-align: center;">
                                                                 <input type="checkbox" id="head-cb">
                                                             </th>
+                                                            @endif
                                                         </tr>
                                                     </thead>
                                                     <tbody>
+                                                        <?php $cb_arr = array()?>
                                                         @foreach($pengajuans as $pengajuan)
                                                         <tr>
                                                             <td>{{\Carbon\Carbon::parse($pengajuan->created_at)->format('d-m-Y')}}</td>
@@ -149,8 +157,8 @@
                                                             {!!$pengajuan->status == 'disetujui' ? '<span class="badge badge-pills badge-success">Disetujui</span>' : ''!!}
                                                             {!!$pengajuan->status == 'ditolak' ? '<span class="badge badge-pills badge-danger">Ditolak</span>' : ''!!}
                                                             </td>
-                                                            <td>
-                                                            @if($user->role_id == '1')
+                                                            {!!$user->role_id == '1' ? '<td>' : '<td style="text-align: center; vertical-align: center;">' !!}
+                                                            @if($user->role_id == '1' && $pengajuan->status == 'pending')
                                                             <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#EditModal{{$pengajuan->id}}">Edit</button>
                                                             <!-- Modal UPDATE Pengajuan -->
                                                             <div class="modal fade" id="EditModal{{$pengajuan->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -232,17 +240,50 @@
                                                                 </div>
                                                             </div>
                                                             <!-- Modal HAPUS Pengajuan End -->
+                                                            @elseif($user->role_id == '1' && $pengajuan->status == 'ditolak')
+                                                            <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#alasanPengModal{{$pengajuan->id}}">Alasan</button>
+                                                            <!-- Modal view Alasan Penolakan Pengajuan -->
+                                                            <div class="modal fade" id="alasanPengModal{{$pengajuan->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                <div class="modal-dialog" role="document">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <h5 class="modal-title" id="exampleModalLabel">Alasan Penolakan</h5>
+                                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                            <span aria-hidden="true">&times;</span>
+                                                                            </button>
+                                                                        </div>
+                                                                        <div class="modal-body">
+                                                                            <p>{{$pengajuan->alasan_ditolak}}</p>
+                                                                        </div>   
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <!-- Modal view Alasan Penolakan Pengajuan End -->
                                                             @elseif($user->role_id == '2' && $pengajuan->status == 'pending')
-                                                            <!-- <form action="">
-                                                                @csrf
-                                                                <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#SetujuModal{{$pengajuan->id}}">Setujui</button>
-                                                            </form>
-                                                            <form action="">
-                                                                @csrf
-                                                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#TolakModal{{$pengajuan->id}}">Tolak</button>
-                                                            </form>
-                                                             -->
-                                                             <input type="checkbox" class="cb-child">
+                                                                 <input type="checkbox" value="{{$pengajuan->id}}" class="cb-child">
+                                                            @elseif($user->role_id == '2' && $pengajuan->status == 'ditolak')
+                                                            <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#alasanPengModal{{$pengajuan->id}}">Alasan</button>
+                                                            <!-- Modal Alasan Penolakan Pengajuan -->
+                                                            <div class="modal fade" id="alasanPengModal{{$pengajuan->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                <div class="modal-dialog" role="document">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-body">
+                                                                            <form action="{{ route('alasan-penolakan-pengajuan',$pengajuan->id) }}" method="POST">
+                                                                                @csrf
+                                                                                <div class="form-group mb-4">
+                                                                                    <label for="exampleFormTextArea1">Alasan Penolakan:</label>
+                                                                                    <textarea required name="alasan_ditolak" rows="4" class="form-control" id="exampleFormTextArea1" placeholder="Alasan Penolakan..">{{$pengajuan->alasan_ditolak}}</textarea>
+                                                                                </div>
+                                                                        </div>   
+                                                                        <div class="modal-footer">
+                                                                            <button type="submit" class="btn btn-primary btn-rounded mb-4 mt-2">Simpan</button>
+                                                                            </form>
+                                                                            <button type="button" class="btn btn-dark btn-rounded mb-4 mt-2" data-dismiss="modal">Batal</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <!-- Modal Alasan Penolakan Pengajuan End -->
                                                             @endif
                                                         </td>
                                                         </tr>

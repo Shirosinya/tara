@@ -14,14 +14,15 @@ use App\Http\Controllers;
 |
 */
 
-Route::get('/', function () {
-    return view('dashboard');
-})->middleware('auth');
+// Route::get('/', function () {
+//     return view('dashboard');
+// })->middleware('auth');
 
 Auth::routes();
 
 Route::group(['middleware' => ['auth']], function () 
 {
+    Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
@@ -30,8 +31,9 @@ Route::group(['middleware' => ['auth']], function ()
     Route::post('/sukucadang/update{id}/pengajuan', [App\Http\Controllers\SukuCadangController::class, 'updatePengajuan']);
     Route::post('/sukucadang/destroy{id}/pengajuan', [App\Http\Controllers\SukuCadangController::class, 'destroyPengajuan']);
 
-    Route::post('/sukucadang/setujui{id_arr}/pengajuan', [App\Http\Controllers\SukuCadangController::class, 'setujuiPengajuan']);
-    Route::post('/sukucadang/tolak{id_arr}/pengajuan', [App\Http\Controllers\SukuCadangController::class, 'tolakPengajuan']);
+    Route::post('/sukucadang/setujui/pengajuan', [App\Http\Controllers\SukuCadangController::class, 'setujuiPengajuan'])->name('setujui-pengajuan');
+    Route::post('/sukucadang/tolak/pengajuan', [App\Http\Controllers\SukuCadangController::class, 'tolakPengajuan']);
+    Route::post('/sukucadang/alasan-penolakan/{id}/pengajuan', [App\Http\Controllers\SukuCadangController::class, 'alasanPenolakan'])->name('alasan-penolakan-pengajuan');
 
 
     Route::get('/jasakonsultan',[App\Http\Controllers\JasaKonsultanController::class, 'index']);
