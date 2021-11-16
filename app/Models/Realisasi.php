@@ -18,7 +18,7 @@ class Realisasi extends Model
     ];
 
     public function pengajuan(){
-        return $this->belongsTo(Pengajuan::class);
+        return $this->belongsTo(Pengajuan::class, 'id_pengajuan');
     }
 
     public function detail_realisasis(){

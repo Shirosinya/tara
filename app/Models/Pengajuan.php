@@ -25,6 +25,6 @@ class Pengajuan extends Model
     }
 
     public function realisasi(){
-        return $this->belongsTo(Realisasi::class);
+        return $this->hasOne(Realisasi::class, 'id_pengajuan');
     }
 }

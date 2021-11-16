@@ -147,7 +147,7 @@
                                                         <?php $cb_arr = array()?>
                                                         @foreach($pengajuans as $pengajuan)
                                                         <tr>
-                                                            <td>{{\Carbon\Carbon::parse($pengajuan->created_at)->format('d-m-Y')}}</td>
+                                                            <td>{{\Carbon\Carbon::parse($pengajuan->created_at)->format('d-m-Y H:i:s')}} WIB</td>
                                                             <td>{{$pengajuan->nama_kegiatan}}</td>
                                                             <td>{{\Carbon\Carbon::parse($pengajuan->tanggal_mulai)->format('d-m-Y')}}</td>
                                                             <td>{{\Carbon\Carbon::parse($pengajuan->tanggal_selesai)->format('d-m-Y')}}</td>
@@ -340,63 +340,33 @@
                                                 <table id="default-ordering1" class="table table-striped table-bordered table-hover" style="width:100%">
                                                     <thead>
                                                         <tr>
-                                                            <th>Name</th>
-                                                            <th>Position</th>
-                                                            <th>Age</th>
-                                                            <th>Start date</th>
-                                                            <th>Salary</th>
+                                                            <td>Nama Kegiatan</td>
+                                                            <td>Tanggal Mulai</td>
+                                                            <td>Tanggal Selesai</td>
+                                                            <td>Status</td>
+                                                            <td>Anggaran Terealisasi</td>
                                                             <th class="invisible"></th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
+                                                        @foreach($realisasis as $realisasi)
                                                         <tr>
-                                                            <td>Tiger Nixon</td>
-                                                            <td>System Architect</td>
-                                                            <td>61</td>
-                                                            <td>2011/04/25</td>
-                                                            <td>$320,800</td>
+                                                            <td>{{$realisasi->pengajuan->nama_kegiatan}}</td>
+                                                            <td>{{$realisasi->pengajuan->tanggal_mulai}}</td>
+                                                            <td>{{$realisasi->pengajuan->tanggal_selesai}}</td>
+                                                            <td>{{$realisasi->status}}</td>
+                                                            <td>{{$realisasi->total_pengeluaran_real}}</td>
                                                             <td class="text-center"><button class="btn btn-primary">View</button> </td>
                                                         </tr>
-                                                        <tr>
-                                                            <td>Garrett Winters</td>
-                                                            <td>Accountant</td>
-                                                            <td>63</td>
-                                                            <td>2011/07/25</td>
-                                                            <td>$170,750</td>
-                                                            <td class="text-center"><button class="btn btn-primary">View</button> </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Yuri Berry</td>
-                                                            <td>Chief Marketing Officer (CMO)</td>
-                                                            <td>40</td>
-                                                            <td>2009/06/25</td>
-                                                            <td>$675,000</td>
-                                                            <td class="text-center"><button class="btn btn-primary">View</button> </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Caesar Vance</td>
-                                                            <td>Pre-Sales Support</td>
-                                                            <td>21</td>
-                                                            <td>2011/12/12</td>
-                                                            <td>$106,450</td>
-                                                            <td class="text-center"><button class="btn btn-primary">View</button> </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Doris Wilder</td>
-                                                            <td>Sales Assistant</td>
-                                                            <td>23</td>
-                                                            <td>2010/09/20</td>
-                                                            <td>$85,600</td>
-                                                            <td class="text-center"><button class="btn btn-primary">View</button> </td>
-                                                        </tr>
+                                                        @endforeach
                                                     </tbody>
                                                     <tfoot>
                                                         <tr>
-                                                            <th>Name</th>
-                                                            <th>Position</th>
-                                                            <th>Age</th>
-                                                            <th>Start date</th>
-                                                            <th>Salary</th>
+                                                            <td>Nama Kegiatan</td>
+                                                            <td>Tanggal Mulai</td>
+                                                            <td>Tanggal Selesai</td>
+                                                            <td>Status</td>
+                                                            <td>Anggaran Terealisasi</td>
                                                             <th class="invisible"></th>
                                                         </tr>
                                                     </tfoot>
