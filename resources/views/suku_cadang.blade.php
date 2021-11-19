@@ -340,11 +340,11 @@
                                                 <table id="default-ordering1" class="table table-striped table-bordered table-hover" style="width:100%">
                                                     <thead>
                                                         <tr>
-                                                            <td>Nama Kegiatan</td>
-                                                            <td>Tanggal Mulai</td>
-                                                            <td>Tanggal Selesai</td>
-                                                            <td>Status</td>
-                                                            <td>Anggaran Terealisasi</td>
+                                                            <th>Nama Kegiatan</th>
+                                                            <th>Tanggal Mulai</th>
+                                                            <th>Tanggal Selesai</th>
+                                                            <th>Status Realisasi</th>
+                                                            <th>Anggaran Terealisasi</th>
                                                             <th class="invisible"></th>
                                                         </tr>
                                                     </thead>
@@ -354,19 +354,21 @@
                                                             <td>{{$realisasi->pengajuan->nama_kegiatan}}</td>
                                                             <td>{{$realisasi->pengajuan->tanggal_mulai}}</td>
                                                             <td>{{$realisasi->pengajuan->tanggal_selesai}}</td>
-                                                            <td>{{$realisasi->status}}</td>
+                                                            <td>{{$realisasi->status_real}}</td>
                                                             <td>{{$realisasi->total_pengeluaran_real}}</td>
-                                                            <td class="text-center"><button class="btn btn-primary">View</button> </td>
+                                                            <td class="text-center">
+                                                                <a href="/detailrealisasi/{{$realisasi->id}}"><button class="btn btn-primary">Bukti</button>
+                                                            </td>
                                                         </tr>
                                                         @endforeach
                                                     </tbody>
                                                     <tfoot>
                                                         <tr>
-                                                            <td>Nama Kegiatan</td>
-                                                            <td>Tanggal Mulai</td>
-                                                            <td>Tanggal Selesai</td>
-                                                            <td>Status</td>
-                                                            <td>Anggaran Terealisasi</td>
+                                                            <th>Nama Kegiatan</th>
+                                                            <th>Tanggal Mulai</th>
+                                                            <th>Tanggal Selesai</th>
+                                                            <th>Status Realisasi</th>
+                                                            <th>Anggaran Terealisasi</th>
                                                             <th class="invisible"></th>
                                                         </tr>
                                                     </tfoot>

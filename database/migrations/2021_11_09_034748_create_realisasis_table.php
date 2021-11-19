@@ -16,6 +16,7 @@ class CreateRealisasisTable extends Migration
         Schema::create('realisasis', function (Blueprint $table) {
             $table->id();
             $table->enum('status_real',['pending','disetujui','ditolak'])->default('pending');
+            $table->enum('diajukan', ['yes', 'no'])->default('no');
             $table->text('alasan_ditolak_real')->nullable();
             $table->integer('total_pengeluaran_real');
             $table->timestamps();

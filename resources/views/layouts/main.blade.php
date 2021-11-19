@@ -5,23 +5,23 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
     <title>TARA | @yield('title')</title>
-    <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico"/>
+    <link rel="icon" type="image/x-icon" href="../../assets/img/favicon.ico"/>
     <!-- BEGIN GLOBAL MANDATORY STYLES -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
-    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href="assets/css/plugins.css" rel="stylesheet" type="text/css" />
+    <link href="../../bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="../../assets/css/plugins.css" rel="stylesheet" type="text/css" />
     <!-- <link href="assets/css/users/login-1.css" rel="stylesheet" type="text/css" /> -->
     <!-- END GLOBAL MANDATORY STYLES -->
 
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM STYLES -->
-    <link href="plugins/dropzone/dropzone.min.css" rel="stylesheet" type="text/css" />
-    <link href="assets/css/accounting-dashboard/style.css" rel="stylesheet" type="text/css" />
-    <link href="plugins/charts/c3charts/c3.min.css" rel="stylesheet" type="text/css" />    
+    <link href="../../plugins/dropzone/dropzone.min.css" rel="stylesheet" type="text/css" />
+    <link href="../../assets/css/accounting-dashboard/style.css" rel="stylesheet" type="text/css" />
+    <link href="../../plugins/charts/c3charts/c3.min.css" rel="stylesheet" type="text/css" />    
     <!-- END PAGE LEVEL PLUGINS/CUSTOM STYLES -->
 
     <!-- BEGIN PAGE LEVEL STYLES -->
-    <link rel="stylesheet" type="text/css" href="plugins/table/datatable/datatables.css">
-    <link rel="stylesheet" type="text/css" href="plugins/table/datatable/custom_dt_ordering_sorting.css">
+    <link rel="stylesheet" type="text/css" href="../../plugins/table/datatable/datatables.css">
+    <link rel="stylesheet" type="text/css" href="../../plugins/table/datatable/custom_dt_ordering_sorting.css">
     <!-- toastr -->
     <!-- <link href="plugins/notification/toastr/toastr.min.css" rel="stylesheet" type="text/css" /> -->
     <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
@@ -53,7 +53,7 @@
             width: 100%;
             height: calc(2.25rem + 2px);
             vertical-align: middle;
-            background: #fff url(assets/img/arrow-down.png) no-repeat right .75rem center;
+            background: #fff url(../../assets/img/arrow-down.png) no-repeat right .75rem center;
             background-size: 13px 14px;
             -webkit-appearance: none;
             -moz-appearance: none;
@@ -79,7 +79,7 @@
                 <a href="javascript:void(0);" class="nav-link sidebarCollapse" data-placement="bottom">
                     <i class="flaticon-menu-line-2" style="color: white;"></i>
                 </a>
-            <a href="index.html" class=""> <img src="assets/img/logo-3.png" class="img-fluid" alt="logo"></a>
+            <a href="index.html" class=""> <img src="../../assets/img/logo-3.png" class="img-fluid" alt="logo"></a>
         </div>
         <ul class="nav navbar-nav flex-row ml-lg-auto">
             <li class="nav-item dropdown cs-toggle d-lg-none"> 
@@ -117,7 +117,7 @@
                 <ul class="navbar-nav theme-brand flex-row  d-none d-lg-flex">
                     <li class="nav-item d-flex">
                         <a href="index.html" class="navbar-brand">
-                            <img src="assets/img/logo-3.png" class="img-fluid" alt="logo">
+                            <img src="../../assets/img/logo-3.png" class="img-fluid" alt="logo">
                         </a>
                         <p class="border-underline"></p>
                     </li>
@@ -233,7 +233,7 @@
                 </div>
                 <div class="col-md-12">
                     <div class="usr-info text-center mb-5">
-                        <img alt="admin-profile" src="assets/img/120x120.jpg" class="img-fluid rounded-circle mb-3">
+                        <img alt="admin-profile" src="../../assets/img/120x120.jpg" class="img-fluid rounded-circle mb-3">
                         <div class=" mt-2">
                             <h5 class="usr-name mb-0">{{$user->username}}</h5>
                             <p class="usr-occupation mb-0 mt-1">{{$user->name}}</p>
@@ -274,30 +274,30 @@
     </footer>
     <!--  END FOOTER  -->
     <!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
-    <script src="assets/js/libs/jquery-3.1.1.min.js"></script>
-    <script src="plugins/scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
-    <script src="bootstrap/js/popper.min.js"></script>
-    <script src="bootstrap/js/bootstrap.min.js"></script>
-    <script src="assets/js/app.js"></script>
-    <script src="assets/js/loader.js"></script>
+    <script src="../../assets/js/libs/jquery-3.1.1.min.js"></script>
+    <script src="../../plugins/scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="../../bootstrap/js/popper.min.js"></script>
+    <script src="../../bootstrap/js/bootstrap.min.js"></script>
+    <script src="../../assets/js/app.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/loadjs/4.2.0/loadjs.min.js"></script>
     <script>
         $(document).ready(function() {
             App.init();
         });
     </script>
-    <script src="assets/js/custom.js"></script>
+    <script src="../../assets/js/custom.js"></script>
     <!-- END GLOBAL MANDATORY SCRIPTS -->
 
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
-    <script src="plugins/charts/sparklines/jquery.sparkline.min.js"></script>
-    <script src="plugins/charts/d3charts/d3.v3.min.js"></script>
-    <script src="plugins/charts/c3charts/c3.min.js"></script>
-    <script src="plugins/calendar/pignose/moment.latest.min.js"></script>
-    <script src="plugins/calendar/pignose/pignose.calendar.js"></script>
-    <script src="plugins/dropzone/dropzone.min.js"></script>
-    <script src="plugins/progressbar/progressbar.min.js"></script>
-    <script src="assets/js/accounting-dashboard/accounting-custom.js"></script>
-    <script src="plugins/table/datatable/datatables.js"></script>
+    <script src="../../plugins/charts/sparklines/jquery.sparkline.min.js"></script>
+    <script src="../../plugins/charts/d3charts/d3.v3.min.js"></script>
+    <script src="../../plugins/charts/c3charts/c3.min.js"></script>
+    <script src="../../plugins/calendar/pignose/moment.latest.min.js"></script>
+    <script src="../../plugins/calendar/pignose/pignose.calendar.js"></script>
+    <script src="../../plugins/dropzone/dropzone.min.js"></script>
+    <script src="../../plugins/progressbar/progressbar.min.js"></script>
+    <script src="../../assets/js/accounting-dashboard/accounting-custom.js"></script>
+    <script src="../../plugins/table/datatable/datatables.js"></script>
     <script>        
         $('#default-ordering').DataTable( {
             "columnDefs": [

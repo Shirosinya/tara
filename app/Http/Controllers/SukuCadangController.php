@@ -20,16 +20,6 @@ class SukuCadangController extends Controller
     {
         $user = Auth::user();
         $pengajuans = Pengajuan::where('id_tipe_akun', '=', '1')->get();
-        // $pengajuans_approved = Pengajuan::where([
-        //     ['id_tipe_akun', '=', '1'],
-        //     ['status', '=', 'disetujui'],
-        // ])->get();
-        
-        // $id_pengajuan_arr = array();
-        // foreach($pengajuans_approved as $realisasi)
-        //     array_push($id_pengajuan_arr, $realisasi->id);
-        // $realisasis = Realisasi::whereIn('id_pengajuan',$id_pengajuan_arr)->get();
-        // dd($realisasis);
         $realisasis = Realisasi::all();
         return view('suku_cadang', compact('pengajuans','user','realisasis'));
     }
