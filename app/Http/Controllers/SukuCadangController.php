@@ -155,7 +155,8 @@ class SukuCadangController extends Controller
             Toastr::success('Berhasil Update!','Success');
             return redirect()->back();
         }else{
-            return redirect('/sukucadang')->with('danger','Terjadi Kesalahan Saat Penginputan!');
+            Toastr::error('Terjadi Kesalahan!','Failed');
+            return redirect()->back();
         }
     }
 

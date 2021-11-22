@@ -328,6 +328,15 @@
             // },
             drawCallback: function () { $('.dataTables_paginate > .pagination').addClass(' pagination-style-13 pagination-bordered mb-5'); },
 	    } );
+        
+        $('#default-ordering2').DataTable( {
+            "language": {
+                "paginate": { "previous": "<i class='flaticon-arrow-left-1'></i>", "next": "<i class='flaticon-arrow-right'></i>" },
+                "info": "Showing page _PAGE_ of _PAGES_"
+            },
+            "order": [[ 0, "asc" ]],
+            drawCallback: function () { $('.dataTables_paginate > .pagination').addClass(' pagination-style-13 pagination-bordered mb-5'); },
+	    } );
     </script>
     <script>
         $("#head-cb").on('click',function(){

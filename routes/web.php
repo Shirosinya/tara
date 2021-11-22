@@ -38,6 +38,10 @@ Route::group(['middleware' => ['auth']], function ()
 
     //Detail Realisasi
     Route::get('/detailrealisasi/{id}', [App\Http\Controllers\DetailRealisasiController::class, 'index']);
+    Route::post('/detailrealisasi/store/{id_realisasi}', [App\Http\Controllers\DetailRealisasiController::class, 'store']);
+    Route::post('/detailrealisasi/update/{id_detail}', [App\Http\Controllers\DetailRealisasiController::class, 'update']);
+    Route::post('/detailrealisasi/destroy/{id_detail}', [App\Http\Controllers\DetailRealisasiController::class, 'destroy']);
+
 
     Route::get('/jasakonsultan',[App\Http\Controllers\JasaKonsultanController::class, 'index']);
 
