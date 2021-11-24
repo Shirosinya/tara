@@ -12,8 +12,9 @@
                 <div class="crumbs">
                     <ul id="breadcrumbs" class="breadcrumb">
                         <li><a href="index.html"><i class="flaticon-home-fill"></i></a></li>
-                        <li><a href="#">Anggaran</a></li>
-                        <li class="active"><a href="#">Suku Cadang</a> </li>
+                        <li><a>Anggaran</a></li>
+                        <li><a>Suku Cadang</a></li>
+                        <li class="active"><a>Bukti {{$realisasis->pengajuan->nama_kegiatan}}</a> </li>
                     </ul>
                 </div>
             </div>
@@ -24,7 +25,7 @@
                 <div class="widget-header border-bottom border-default">
                     <div class="row">
                         <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                            <h4>SUKU CADANG</h4>
+                            <h4>{{$realisasis->pengajuan->nama_kegiatan}}</h4>
                         </div>
                     </div>
                 </div>
@@ -45,7 +46,7 @@
                         <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
                             <div class="statbox widget box box-shadow">
                                 <div class="widget-content widget-content-area">
-                                    @if($user->role_id == '1')
+                                    @if($user->role_id == '1' && $realisasis->diajukan == 'no')
                                     <button type="button" class="btn btn-success mb-4 mr-2" data-toggle="modal" data-target="#exampleModal" style="">+ Tambah Bukti</button>
                                     <!-- Modal Tambah Bukti -->
                                     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -138,8 +139,8 @@
                                                         </div>
                                                         <!-- Modal Show File Bukti End -->
                                                     </td>
+                                                    @if($user->role_id == '1' && $realisasis->diajukan == 'no')
                                                     {!!$user->role_id == '1' ? '<td>' : '<td style="text-align: center; vertical-align: center;">' !!}
-                                                    @if($user->role_id == '1')
                                                     <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#EditModal{{$detail_realisasi->id}}">Edit</button>
                                                     <!-- Modal UPDATE Bukti -->
                                                     <div class="modal fade" id="EditModal{{$detail_realisasi->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -177,7 +178,8 @@
                                                                         </div>
                                                                         <div class="form-group mb-4 mt-3">
                                                                             <label for="exampleFormControlFile1">File Bukti</label>
-                                                                            <input required name="file_bukti" type="file" class="form-control-file" id="exampleFormControlFile1">
+                                                                            <input name="file_bukti" type="file" class="form-control-file" id="exampleFormControlFile1">
+                                                                            <img class="mt-3" width="100" height="67" src="{{asset('/storage/images/detail_realisasi/'.$detail_realisasi->file_bukti)}}" alt="{{$detail_realisasi->file_bukti}}">
                                                                         </div>
                                                                 </div>   
                                                                 <div class="modal-footer">
@@ -213,8 +215,8 @@
                                                         </div>
                                                     </div>
                                                     <!-- Modal HAPUS Bukti End -->
+                                                    </td>
                                                     @endif
-                                                </td>
                                                 </tr>
                                                 @endforeach
                                             </tbody>

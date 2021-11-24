@@ -313,29 +313,10 @@
                                 <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
                                     <div class="statbox widget box box-shadow">
                                         <div class="widget-content widget-content-area">
-                                            <button type="button" class="btn btn-success mb-4 mr-2" data-toggle="modal" data-target="#exampleModal1" style="">+ Tambah Realisasi</button>
-                                            <!-- Modal Tambah Realisasi -->
-                                            <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title" id="exampleModalLabel">Tambah Kegiatan Realisasi</h5>
-                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <h4 class="modal-heading mb-4 mt-2">Why We Use Electoral College, Not Popular Vote</h4>
-                                                            <p class="modal-text mb-3">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. </p>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-primary btn-rounded mb-4 mt-2">Save changes</button>
-                                                            <button type="button" class="btn btn-dark btn-rounded mb-4 mt-2" data-dismiss="modal">Close</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- Modal Tambah Realisasi End -->
+                                            @if($user->role_id == '2')
+                                            <button disabled id="buttonSetujui2" onclick="setujuiButton2()" class="btn btn-warning mb-4 mr-2">Setujui Yang Dipilih</button>
+                                            <button disabled id="buttonDitolak2" onclick="tolakButton2()" class="btn btn-danger mb-4 mr-2">Tolak Yang Dipilih</button>
+                                            @endif
                                             <div class="table-responsive mb-4">
                                                 <table id="default-ordering1" class="table table-striped table-bordered table-hover" style="width:100%">
                                                     <thead>
@@ -345,7 +326,13 @@
                                                             <th>Tanggal Selesai</th>
                                                             <th>Status Realisasi</th>
                                                             <th>Anggaran Terealisasi</th>
+                                                            @if($user->role_id == '1')
                                                             <th class="invisible"></th>
+                                                            @else
+                                                            <th style="text-align: center; vertical-align: center;">
+                                                                <input type="checkbox" id="head-cb2">
+                                                            </th>
+                                                            @endif
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -354,10 +341,66 @@
                                                             <td>{{$realisasi->pengajuan->nama_kegiatan}}</td>
                                                             <td>{{$realisasi->pengajuan->tanggal_mulai}}</td>
                                                             <td>{{$realisasi->pengajuan->tanggal_selesai}}</td>
-                                                            <td>{{$realisasi->status_real}}</td>
-                                                            <td>{{$realisasi->total_pengeluaran_real}}</td>
+                                                            {!!$user->role_id == '1' ? '<td>' : '<td style="text-align: center; vertical-align: center;">' !!}
+                                                            {!!$realisasi->diajukan == 'no' ? '<span class="badge badge-pills badge-info">Belum Diajukan</span>' : ''!!}
+                                                            {!!$realisasi->status_real == 'pending' && $realisasi->diajukan == 'yes' ? '<span class="badge badge-pills badge-primary">Pending</span>' : ''!!}
+                                                            {!!$realisasi->status_real == 'disetujui' ? '<span class="badge badge-pills badge-success">Disetujui</span>' : ''!!}
+                                                            {!!$realisasi->status_real == 'ditolak' ? '<span class="badge badge-pills badge-danger">Ditolak</span>' : ''!!}
+                                                            </td>
+                                                            <td>Rp. {{number_format($realisasi->total_pengeluaran_real,2,',','.')}}</td>
                                                             <td class="text-center">
-                                                                <a href="/detailrealisasi/{{$realisasi->id}}"><button class="btn btn-primary">Bukti</button>
+                                                                @if($realisasi->diajukan == 'no')
+                                                                <a href="/detailrealisasi/{{$realisasi->id}}"><button class="btn btn-primary">Bukti</button></a>
+                                                                <button class="btn btn-warning" data-toggle="modal" data-target="#PengajuanModal{{$pengajuan->id}}">Ajukan</button>
+                                                                <!-- Modal Mengajukan Realisasi -->
+                                                                <div id="PengajuanModal{{$pengajuan->id}}" class="modal fade show text-center danger-alert" tabindex="-1" role="dialog" aria-labelledby="exampleDangerAlertLabel">
+                                                                    <div class="modal-dialog" role="document">
+                                                                        <div class="modal-content">
+                                                                            <div class="modal-body">
+                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                <span aria-hidden="true">×</span>
+                                                                                </button>
+                                                                                <i class="flaticon-warning mt-5" style="color:cyan; font-size:100px;"></i>
+                                                                                <h4 class="modal-title mt-4 mb-4">Yakin Akan Mengajukan?</h4>
+                                                                                <p class="mb-4">Data yang diajukan tidak dapat dihapus atau diubah kembali.</p>
+                                                                            </div>
+                                                                            <div class="modal-footer">
+                                                                                <form action="/sukucadang/pengajuan-realisasi/{{$realisasi->id}}" method="POST">
+                                                                                    @csrf
+                                                                                    <button type="submit" class="btn btn-gradient-danger btn-rounded mt-3 mb-4">Ajukan</button>
+                                                                                </form>
+                                                                                <button type="button" class="btn btn-dark btn-rounded mt-3 mb-4" data-dismiss="modal">Batal</button>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <!-- Modal Mengajukan Realisasi End -->
+                                                                @elseif($user->role_id == '2' && $realisasi->status_real == 'pending')
+                                                                <input type="checkbox" value="{{$realisasi->id}}" class="cb-child2">
+                                                                @elseif($user->role_id == '2' && $realisasi->status_real == 'ditolak')
+                                                                <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#alasanRealModal{{$realisasi->id}}">Alasan</button>
+                                                                <!-- Modal Alasan Penolakan Realisasi -->
+                                                                <div class="modal fade" id="alasanRealModal{{$realisasi->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                    <div class="modal-dialog" role="document">
+                                                                        <div class="modal-content">
+                                                                            <div class="modal-body">
+                                                                                <form action="" method="POST">
+                                                                                    @csrf
+                                                                                    <div class="form-group mb-4">
+                                                                                        <label for="exampleFormTextArea1">Alasan Penolakan:</label>
+                                                                                        <textarea required name="alasan_ditolak" rows="4" class="form-control" id="exampleFormTextArea1" placeholder="Alasan Penolakan..">{{$pengajuan->alasan_ditolak}}</textarea>
+                                                                                    </div>
+                                                                            </div>   
+                                                                            <div class="modal-footer">
+                                                                                <button type="submit" class="btn btn-primary btn-rounded mb-4 mt-2">Simpan</button>
+                                                                                </form>
+                                                                                <button type="button" class="btn btn-dark btn-rounded mb-4 mt-2" data-dismiss="modal">Batal</button>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <!-- Modal Alasan Penolakan Realisasi End -->
+                                                                @endif
                                                             </td>
                                                         </tr>
                                                         @endforeach

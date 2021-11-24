@@ -19,7 +19,7 @@ class DetailRealisasiController extends Controller
     public function index($id)
     {
         $user = Auth::user();
-        $realisasis = Realisasi::where('id', '=', $id);
+        $realisasis = Realisasi::where('id', '=', $id)->first();
         $detail_realisasis = DetailRealisasi::where('id_realisasi', '=', $id)->get();
         $id_realisasi = $id;
         // $dr = DetailRealisasi::all();
@@ -71,31 +71,15 @@ class DetailRealisasiController extends Controller
             'file_bukti' => $input['file_bukti'],
             'id_realisasi' => $id_realisasi
         ]);
+        
+        $total_pengeluaran = DetailRealisasi::where('id_realisasi', $id_realisasi)->sum('pengeluaran');
+        $data = Realisasi::where('id',$id_realisasi)->first();
+        $data->update([
+            'total_pengeluaran_real' => $total_pengeluaran,
+        ]);
 
         Toastr::success('Berhasil Menambah Bukti!','Success');
         return redirect()->back();
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
     }
 
     /**
@@ -111,9 +95,9 @@ class DetailRealisasiController extends Controller
             'nama_bukti' => 'required',
             'tanggal' => 'required',
             'pengeluaran' => 'required',
-            'file_bukti' => 'required',
             'id_tipe_akun' => 'required',
         ]);
+        
         $input = $request->all();
         $pengeluaran = str_replace(".", "", $input['pengeluaran']);
         $data = DetailRealisasi::where('id',$id_detail)->first();
@@ -125,21 +109,40 @@ class DetailRealisasiController extends Controller
             $path = $request->file('file_bukti')->storeAs($destination_path, $image_name);
 
             $input['file_bukti'] = $image_name;
-        }
+            
+            $data->update([
+                'nama_bukti' => $input['nama_bukti'],
+                'tanggal' => $input['tanggal'],
+                'pengeluaran' => $pengeluaran,
+                'file_bukti' => $input['file_bukti'],
+            ]);
+            
+            $id_realisasi = $data->id_realisasi;
+            $total_pengeluaran = DetailRealisasi::where('id_realisasi', $id_realisasi)->sum('pengeluaran');
+            $data_realisasi = Realisasi::where('id',$id_realisasi)->first();
 
-        if($data->update([
+            $data_realisasi->update([
+            'total_pengeluaran_real' => $total_pengeluaran,
+        ]);
+
+            Toastr::success('Berhasil Update!','Success');
+            return redirect()->back();
+        }
+        $data->update([
             'nama_bukti' => $input['nama_bukti'],
             'tanggal' => $input['tanggal'],
             'pengeluaran' => $pengeluaran,
-            'file_bukti' => $input['file_bukti'],
-        ]))
-        {
-            Toastr::success('Berhasil Update!','Success');
-            return redirect()->back();
-        }else{
-            Toastr::error('Terjadi Kesalahan!','Failed');
-            return redirect()->back();
-        }
+        ]);
+
+        $id_realisasi = $data->id_realisasi;
+        $total_pengeluaran = DetailRealisasi::where('id_realisasi', $id_realisasi)->sum('pengeluaran');
+        $data_realisasi = Realisasi::where('id',$id_realisasi)->first();
+        $data_realisasi->update([
+            'total_pengeluaran_real' => $total_pengeluaran,
+        ]);
+
+        Toastr::success('Berhasil Update!','Success');
+        return redirect()->back();
     }
 
     /**
@@ -150,7 +153,17 @@ class DetailRealisasiController extends Controller
      */
     public function destroy($id_detail)
     {
+        $data = DetailRealisasi::where('id',$id_detail)->first(); 
         DetailRealisasi::where('id',$id_detail)->delete();
+
+        $id_realisasi = $data->id_realisasi;
+        $total_pengeluaran = DetailRealisasi::where('id_realisasi', $id_realisasi)->sum('pengeluaran');
+        $data_realisasi = Realisasi::where('id',$id_realisasi)->first();
+
+        $data_realisasi->update([
+        'total_pengeluaran_real' => $total_pengeluaran,
+        ]);
+        
         Toastr::success('Berhasil Menghapus!','Success');
         return redirect()->back();
     }

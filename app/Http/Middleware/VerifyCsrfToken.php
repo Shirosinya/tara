@@ -14,5 +14,7 @@ class VerifyCsrfToken extends Middleware
     protected $except = [
         '/sukucadang/setujui/pengajuan',
         '/sukucadang/tolak/pengajuan',
+        '/sukucadang/setujui/realisasi',
+        '/sukucadang/tolak/realisasi',
     ];
 }

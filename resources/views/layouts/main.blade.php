@@ -315,6 +315,12 @@
         } );
         
         $('#default-ordering1').DataTable( {
+            "columnDefs": [
+            {
+                "targets": [ 6 ],
+                "sortable": false,
+                "searchable": false
+            }],
             "language": {
                 "paginate": { "previous": "<i class='flaticon-arrow-left-1'></i>", "next": "<i class='flaticon-arrow-right'></i>" },
                 "info": "Showing page _PAGE_ of _PAGES_"
@@ -338,6 +344,7 @@
             drawCallback: function () { $('.dataTables_paginate > .pagination').addClass(' pagination-style-13 pagination-bordered mb-5'); },
 	    } );
     </script>
+    <!-- Script Tabel Pengajuan -->
     <script>
         $("#head-cb").on('click',function(){
             if($("#head-cb").prop('checked')==true){
@@ -353,7 +360,7 @@
                 $("#buttonDitolak").prop('disabled',true)
             }
         })
-        let yangDicheck = 0;
+
         $("#default-ordering").on('click','.cb-child',function(){
             if($(this).prop('checked')!=true){
                 $("#head-cb").prop('checked',false)
@@ -408,6 +415,83 @@
         })
     }
     </script>
+    <!-- Script Tabel Pengajuan END -->
+
+    <!-- Script Tabel Realisasi -->
+    <script>
+        $("#head-cb2").on('click',function(){
+            if($("#head-cb2").prop('checked')==true){
+                $(".cb-child2").prop('checked',true)
+            }else{
+                $(".cb-child2").prop('checked',false)
+            }
+            if($("#head-cb2").prop('checked')==true){
+                $("#buttonSetujui2").prop('disabled',false)
+                $("#buttonDitolak2").prop('disabled',false)
+            }else{
+                $("#buttonSetujui2").prop('disabled',true)
+                $("#buttonDitolak2").prop('disabled',true)
+            }
+        })
+
+        $("#default-ordering1").on('click','.cb-child2',function(){
+            if($(this).prop('checked')!=true){
+                $("#head-cb2").prop('checked',false)
+            }
+            let semua_checkbox = $("#default-ordering1 .cb-child2:checked")
+            if(semua_checkbox.length > 0){
+                $("#buttonSetujui2").prop('disabled',false)
+                $("#buttonDitolak2").prop('disabled',false)
+            }else{
+                $("#buttonSetujui2").prop('disabled',true)
+                $("#buttonDitolak2").prop('disabled',true)
+            }
+        })
+
+    function setujuiButton2(){
+        let checkbox_terpilih = $("#default-ordering1 .cb-child2:checked")
+        let semua_id = []
+        $.each(checkbox_terpilih, function(index,elm){
+            semua_id.push(elm.value)
+        })
+        $("#buttonSetujui2").prop('disabled',true)
+        $.ajax({
+            url:"{{url('')}}/sukucadang/setujui/realisasi",
+            method:"post",
+            data:{ids:semua_id},
+            success:function(result){
+                // if(result === "no_errors"){
+                //     location.href = "/sukucadang/setujui/pengajuan"
+                // }
+                window.top.location.reload(true)
+                $("#buttonSetujui2").prop('disabled',false)
+            }
+        })
+    }
+
+    function tolakButton2(){
+        let checkbox_terpilih = $("#default-ordering1 .cb-child2:checked")
+        let semua_id = []
+        $.each(checkbox_terpilih, function(index,elm){
+            semua_id.push(elm.value)
+        })
+        // console.log(semua_id)
+        // console.log("tertolak")
+        $("#buttonDitolak2").prop('disabled',true)
+        $.ajax({
+            url:"{{url('')}}/sukucadang/tolak/realisasi",
+            method:"post",
+            data:{ids:semua_id},
+            success:function(result){
+                console.log("berhasil tolak")
+                window.top.location.reload(true)
+                $("#buttonDitolak2").prop('disabled',false)
+            }
+        })
+    }
+    </script>
+    <!-- Script Tabel Realisasi END-->
+    
     <script type="text/javascript">
 		
 		var rupiah = document.getElementById('rupiah');

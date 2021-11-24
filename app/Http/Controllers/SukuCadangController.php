@@ -20,18 +20,13 @@ class SukuCadangController extends Controller
     {
         $user = Auth::user();
         $pengajuans = Pengajuan::where('id_tipe_akun', '=', '1')->get();
-        $realisasis = Realisasi::all();
+        if($user->id == 1){
+            $realisasis = Realisasi::all();
+        }else{
+            $realisasis = Realisasi::where('diajukan', '=', 'yes')->get();
+        }
+        
         return view('suku_cadang', compact('pengajuans','user','realisasis'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -115,17 +110,6 @@ class SukuCadangController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -158,6 +142,35 @@ class SukuCadangController extends Controller
             Toastr::error('Terjadi Kesalahan!','Failed');
             return redirect()->back();
         }
+    }
+
+    public function pengajuanRealisasi($id_realisasi)
+    {
+        $data_realisasi = Realisasi::where('id', '=', $id_realisasi)->first();
+        $data_realisasi->update([
+            'diajukan' => 'yes',
+        ]);
+        
+        Toastr::success('Berhasil Melakukan Pengajuan!','Success');
+        return redirect()->back();
+    }
+
+    public function setujuiRealisasi(Request $request)
+    {
+        Realisasi::whereIn('id',$request->ids)->update([
+            'status_real' => 'disetujui',
+        ]);
+        Toastr::success('Berhasil Menyetujui Pengajuan','Success');
+        return response()->json(true);
+    }
+
+    public function tolakRealisasi(Request $request)
+    {
+        Realisasi::whereIn('id',$request->ids)->update([
+            'status_real' => 'ditolak',
+        ]);
+        Toastr::success('Berhasil Menolak Pengajuan','Success');
+        return response()->json(true);
     }
 
     /**

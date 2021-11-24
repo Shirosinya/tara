@@ -35,6 +35,9 @@ Route::group(['middleware' => ['auth']], function ()
     Route::post('/sukucadang/tolak/pengajuan', [App\Http\Controllers\SukuCadangController::class, 'tolakPengajuan']);
     Route::post('/sukucadang/alasan-penolakan/{id}/pengajuan', [App\Http\Controllers\SukuCadangController::class, 'alasanPenolakan'])->name('alasan-penolakan-pengajuan');
 
+    Route::post('/sukucadang/pengajuan-realisasi/{id_realisasi}', [App\Http\Controllers\SukuCadangController::class, 'pengajuanRealisasi']);
+    Route::post('/sukucadang/setujui/realisasi', [App\Http\Controllers\SukuCadangController::class, 'setujuiRealisasi']);
+    Route::post('/sukucadang/tolak/realisasi', [App\Http\Controllers\SukuCadangController::class, 'tolakRealisasi']);
 
     //Detail Realisasi
     Route::get('/detailrealisasi/{id}', [App\Http\Controllers\DetailRealisasiController::class, 'index']);

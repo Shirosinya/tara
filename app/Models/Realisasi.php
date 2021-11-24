@@ -13,6 +13,7 @@ class Realisasi extends Model
         'status_real',
         'alasan_ditolak_real',
         'total_pengeluaran_real',
+        'diajukan',
         'id_pengajuan',
         
     ];
