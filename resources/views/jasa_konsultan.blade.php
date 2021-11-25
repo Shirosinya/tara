@@ -24,7 +24,7 @@
                 <div class="widget-header border-bottom border-default">
                     <div class="row">
                         <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                            <h4>SUKU CADANG</h4>
+                            <h4>JASA KONSULTAN</h4>
                         </div>
                     </div>
                 </div>

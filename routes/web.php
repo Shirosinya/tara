@@ -38,6 +38,7 @@ Route::group(['middleware' => ['auth']], function ()
     Route::post('/sukucadang/pengajuan-realisasi/{id_realisasi}', [App\Http\Controllers\SukuCadangController::class, 'pengajuanRealisasi']);
     Route::post('/sukucadang/setujui/realisasi', [App\Http\Controllers\SukuCadangController::class, 'setujuiRealisasi']);
     Route::post('/sukucadang/tolak/realisasi', [App\Http\Controllers\SukuCadangController::class, 'tolakRealisasi']);
+    Route::post('/sukucadang/alasan-penolakan/{id}/realisasi', [App\Http\Controllers\SukuCadangController::class, 'alasanPenolakanRealisasi'])->name('alasan-penolakan-realisasi');
 
     //Detail Realisasi
     Route::get('/detailrealisasi/{id}', [App\Http\Controllers\DetailRealisasiController::class, 'index']);
@@ -46,7 +47,7 @@ Route::group(['middleware' => ['auth']], function ()
     Route::post('/detailrealisasi/destroy/{id_detail}', [App\Http\Controllers\DetailRealisasiController::class, 'destroy']);
 
 
-    Route::get('/jasakonsultan',[App\Http\Controllers\JasaKonsultanController::class, 'index']);
+    Route::get('/jasakonsultan',[App\Http\Controllers\JasaKonsultanController::class, 'index2']);
 
 
     Route::get('/jasaaudit',[App\Http\Controllers\JasaAuditController::class, 'index']);

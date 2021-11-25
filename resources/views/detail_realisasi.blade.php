@@ -46,7 +46,7 @@
                         <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
                             <div class="statbox widget box box-shadow">
                                 <div class="widget-content widget-content-area">
-                                    @if($user->role_id == '1' && $realisasis->diajukan == 'no')
+                                    @if($user->role_id == '1' && $realisasis->diajukan == 'no' || $realisasis->status_real == 'ditolak')
                                     <button type="button" class="btn btn-success mb-4 mr-2" data-toggle="modal" data-target="#exampleModal" style="">+ Tambah Bukti</button>
                                     <!-- Modal Tambah Bukti -->
                                     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -139,7 +139,7 @@
                                                         </div>
                                                         <!-- Modal Show File Bukti End -->
                                                     </td>
-                                                    @if($user->role_id == '1' && $realisasis->diajukan == 'no')
+                                                    @if($user->role_id == '1' && $realisasis->diajukan == 'no' || $realisasis->status_real == 'ditolak')
                                                     {!!$user->role_id == '1' ? '<td>' : '<td style="text-align: center; vertical-align: center;">' !!}
                                                     <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#EditModal{{$detail_realisasi->id}}">Edit</button>
                                                     <!-- Modal UPDATE Bukti -->
@@ -234,6 +234,7 @@
                                             </tfoot>
                                         </table>
                                     </div>
+                                    <a href="/sukucadang#icon-profile"><button type="button" class="btn btn-secondary mb-4 mr-2"><i class='flaticon-arrow-left-1'></i> Kembali</button></a>
                                 </div>
                             </div>
                         </div>

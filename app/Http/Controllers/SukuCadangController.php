@@ -19,14 +19,19 @@ class SukuCadangController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $pengajuans = Pengajuan::where('id_tipe_akun', '=', '1')->get();
+        $tipe_id = '1';
+        $pengajuans = Pengajuan::where('id_tipe_akun', '=', $tipe_id)->get();
         if($user->id == 1){
-            $realisasis = Realisasi::all();
+            $realisasis = Realisasi::whereHas('pengajuan', function ($query) use ($tipe_id){
+                $query->where('id_tipe_akun', '=', $tipe_id);
+            })->get();
         }else{
-            $realisasis = Realisasi::where('diajukan', '=', 'yes')->get();
+            $realisasis = Realisasi::where('diajukan', '=', 'yes')->whereHas('pengajuan', function ($query) use ($tipe_id){
+                $query->where('id_tipe_akun', '=', $tipe_id);
+            })->get();
         }
         
-        return view('suku_cadang', compact('pengajuans','user','realisasis'));
+        return view('jasa_konsultan', compact('pengajuans','user','realisasis'));
     }
 
     /**
@@ -147,6 +152,12 @@ class SukuCadangController extends Controller
     public function pengajuanRealisasi($id_realisasi)
     {
         $data_realisasi = Realisasi::where('id', '=', $id_realisasi)->first();
+        if($data_realisasi->status_real == 'ditolak'){
+            $data_realisasi->update([
+                'status_real' => 'pending',
+            ]);
+        }
+        
         $data_realisasi->update([
             'diajukan' => 'yes',
         ]);
@@ -173,6 +184,18 @@ class SukuCadangController extends Controller
         return response()->json(true);
     }
 
+    public function alasanPenolakanRealisasi(Request $request, $id)
+    {
+        $request->validate([
+            'alasan_ditolak_real' => 'required|max:255',
+        ]);
+        Realisasi::where('id','=',$id)->update([
+            'alasan_ditolak_real' => $request['alasan_ditolak_real'],
+        ]);
+        Toastr::success('Berhasil Menyimpan Alasan Penolakan','Success');
+        return redirect()->back();
+    }
+
     /**
      * Remove the specified resource from storage.
      *
@@ -184,5 +207,150 @@ class SukuCadangController extends Controller
         $pengajuan = Pengajuan::where('id',$id)->delete();
         Toastr::success('Berhasil Menghapus!','Success');
         return redirect()->back();
+    }
+
+    //INDEX AKUN JASA - LAIN2
+    public function index2()
+    {
+        $user = Auth::user();
+        $tipe_id = '2';
+        $pengajuans = Pengajuan::where('id_tipe_akun', '=', $tipe_id)->get();
+        if($user->id == 1){
+            $realisasis = Realisasi::whereHas('pengajuan', function ($query) use ($tipe_id){
+                $query->where('id_tipe_akun', '=', $tipe_id);
+            })->get();
+        }else{
+            $realisasis = Realisasi::where('diajukan', '=', 'yes')->whereHas('pengajuan', function ($query) use ($tipe_id){
+                $query->where('id_tipe_akun', '=', $tipe_id);
+            })->get();
+        }
+        
+        return view('jasa_konsultan', compact('pengajuans','user','realisasis'));
+    }
+    
+    public function index3()
+    {
+        $user = Auth::user();
+        $tipe_id = '3';
+        $pengajuans = Pengajuan::where('id_tipe_akun', '=', $tipe_id)->get();
+        if($user->id == 1){
+            $realisasis = Realisasi::whereHas('pengajuan', function ($query) use ($tipe_id){
+                $query->where('id_tipe_akun', '=', $tipe_id);
+            })->get();
+        }else{
+            $realisasis = Realisasi::where('diajukan', '=', 'yes')->whereHas('pengajuan', function ($query) use ($tipe_id){
+                $query->where('id_tipe_akun', '=', $tipe_id);
+            })->get();
+        }
+        
+        return view('jasa_konsultan', compact('pengajuans','user','realisasis'));
+    }
+    
+    public function index4()
+    {
+        $user = Auth::user();
+        $tipe_id = '4';
+        $pengajuans = Pengajuan::where('id_tipe_akun', '=', $tipe_id)->get();
+        if($user->id == 1){
+            $realisasis = Realisasi::whereHas('pengajuan', function ($query) use ($tipe_id){
+                $query->where('id_tipe_akun', '=', $tipe_id);
+            })->get();
+        }else{
+            $realisasis = Realisasi::where('diajukan', '=', 'yes')->whereHas('pengajuan', function ($query) use ($tipe_id){
+                $query->where('id_tipe_akun', '=', $tipe_id);
+            })->get();
+        }
+        
+        return view('jasa_konsultan', compact('pengajuans','user','realisasis'));
+    }
+    
+    public function index5()
+    {
+        $user = Auth::user();
+        $tipe_id = '5';
+        $pengajuans = Pengajuan::where('id_tipe_akun', '=', $tipe_id)->get();
+        if($user->id == 1){
+            $realisasis = Realisasi::whereHas('pengajuan', function ($query) use ($tipe_id){
+                $query->where('id_tipe_akun', '=', $tipe_id);
+            })->get();
+        }else{
+            $realisasis = Realisasi::where('diajukan', '=', 'yes')->whereHas('pengajuan', function ($query) use ($tipe_id){
+                $query->where('id_tipe_akun', '=', $tipe_id);
+            })->get();
+        }
+        
+        return view('jasa_konsultan', compact('pengajuans','user','realisasis'));
+    }
+    
+    public function index6()
+    {
+        $user = Auth::user();
+        $tipe_id = '6';
+        $pengajuans = Pengajuan::where('id_tipe_akun', '=', $tipe_id)->get();
+        if($user->id == 1){
+            $realisasis = Realisasi::whereHas('pengajuan', function ($query) use ($tipe_id){
+                $query->where('id_tipe_akun', '=', $tipe_id);
+            })->get();
+        }else{
+            $realisasis = Realisasi::where('diajukan', '=', 'yes')->whereHas('pengajuan', function ($query) use ($tipe_id){
+                $query->where('id_tipe_akun', '=', $tipe_id);
+            })->get();
+        }
+        
+        return view('jasa_konsultan', compact('pengajuans','user','realisasis'));
+    }
+    
+    public function index7()
+    {
+        $user = Auth::user();
+        $tipe_id = '7';
+        $pengajuans = Pengajuan::where('id_tipe_akun', '=', $tipe_id)->get();
+        if($user->id == 1){
+            $realisasis = Realisasi::whereHas('pengajuan', function ($query) use ($tipe_id){
+                $query->where('id_tipe_akun', '=', $tipe_id);
+            })->get();
+        }else{
+            $realisasis = Realisasi::where('diajukan', '=', 'yes')->whereHas('pengajuan', function ($query) use ($tipe_id){
+                $query->where('id_tipe_akun', '=', $tipe_id);
+            })->get();
+        }
+        
+        return view('jasa_konsultan', compact('pengajuans','user','realisasis'));
+    }
+    
+    public function index8()
+    {
+        $user = Auth::user();
+        $tipe_id = '8';
+        $pengajuans = Pengajuan::where('id_tipe_akun', '=', $tipe_id)->get();
+        if($user->id == 1){
+            $realisasis = Realisasi::whereHas('pengajuan', function ($query) use ($tipe_id){
+                $query->where('id_tipe_akun', '=', $tipe_id);
+            })->get();
+        }else{
+            $realisasis = Realisasi::where('diajukan', '=', 'yes')->whereHas('pengajuan', function ($query) use ($tipe_id){
+                $query->where('id_tipe_akun', '=', $tipe_id);
+            })->get();
+        }
+        
+        return view('jasa_konsultan', compact('pengajuans','user','realisasis'));
+    }
+    
+    public function index9()
+    {
+        $user = Auth::user();
+        $tipe_id = '9';
+        $pengajuans = Pengajuan::where('id_tipe_akun', '=', $tipe_id)->get();
+        if($user->id == 1){
+            $realisasis = Realisasi::whereHas('pengajuan', function ($query) use ($tipe_id){
+                $query->where('id_tipe_akun', '=', $tipe_id);
+            })->get();
+        }else{
+            $realisasis = Realisasi::where('diajukan', '=', 'yes')->whereHas('pengajuan', function ($query) use ($tipe_id){
+                $query->where('id_tipe_akun', '=', $tipe_id);
+            })->get();
+        }
+        
+        return view('jasa_konsultan', compact('pengajuans','user','realisasis'));
     }
 }

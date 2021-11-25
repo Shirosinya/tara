@@ -152,7 +152,7 @@
                                 <a href="#jasa" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"  data-parent="#ecommerce"> Jasa <i class="flaticon-right-arrow"></i> </a>
                                 <ul class="collapse list-unstyled sub-submenu" id="jasa">
                                     <li>
-                                        <a href="ecommerce_product_details_1.html"> Jasa Konsultan </a>
+                                        <a href="/jasakonsultan"> Jasa Konsultan </a>
                                     </li>
                                     <li>
                                         <a href="ecommerce_product_details_2.html"> Jasa Audit </a>
@@ -519,6 +519,5 @@
 			return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
 		}
 	</script>
-
         
     <!-- END PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
