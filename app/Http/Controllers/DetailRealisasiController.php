@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 
 use App\Models\Realisasi;
 use App\Models\DetailRealisasi;
+use App\Models\Pengajuan;
 use Brian2694\Toastr\Facades\Toastr;
 
 class DetailRealisasiController extends Controller
@@ -20,11 +21,12 @@ class DetailRealisasiController extends Controller
     {
         $user = Auth::user();
         $realisasis = Realisasi::where('id', '=', $id)->first();
+        $pengajuan = Pengajuan::where('id', '=', $realisasis->id_pengajuan)->first();
         $detail_realisasis = DetailRealisasi::where('id_realisasi', '=', $id)->get();
         $id_realisasi = $id;
         // $dr = DetailRealisasi::all();
         // dd($id);
-        return view('detail_realisasi', compact('realisasis', 'detail_realisasis', 'user', 'id_realisasi'));
+        return view('detail_realisasi', compact('realisasis', 'detail_realisasis', 'user', 'id_realisasi', 'pengajuan'));
     }
 
     /**

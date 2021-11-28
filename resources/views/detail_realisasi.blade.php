@@ -13,7 +13,7 @@
                     <ul id="breadcrumbs" class="breadcrumb">
                         <li><a href="index.html"><i class="flaticon-home-fill"></i></a></li>
                         <li><a>Anggaran</a></li>
-                        <li><a>Suku Cadang</a></li>
+                        <li><a>{{$realisasis->pengajuan->tipe_akun->nama_tipe}}</a></li>
                         <li class="active"><a>Bukti {{$realisasis->pengajuan->nama_kegiatan}}</a> </li>
                     </ul>
                 </div>
@@ -46,7 +46,7 @@
                         <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
                             <div class="statbox widget box box-shadow">
                                 <div class="widget-content widget-content-area">
-                                    @if($user->role_id == '1' && $realisasis->diajukan == 'no' || $realisasis->status_real == 'ditolak')
+                                    @if($user->role_id == '1' && $realisasis->diajukan == 'no' || $user->role_id == '1' && $realisasis->status_real == 'ditolak')
                                     <button type="button" class="btn btn-success mb-4 mr-2" data-toggle="modal" data-target="#exampleModal" style="">+ Tambah Bukti</button>
                                     <!-- Modal Tambah Bukti -->
                                     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -139,7 +139,7 @@
                                                         </div>
                                                         <!-- Modal Show File Bukti End -->
                                                     </td>
-                                                    @if($user->role_id == '1' && $realisasis->diajukan == 'no' || $realisasis->status_real == 'ditolak')
+                                                    @if($user->role_id == '1' && $realisasis->diajukan == 'no' || $user->role_id == '1' && $realisasis->status_real == 'ditolak')
                                                     {!!$user->role_id == '1' ? '<td>' : '<td style="text-align: center; vertical-align: center;">' !!}
                                                     <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#EditModal{{$detail_realisasi->id}}">Edit</button>
                                                     <!-- Modal UPDATE Bukti -->
@@ -234,7 +234,7 @@
                                             </tfoot>
                                         </table>
                                     </div>
-                                    <a href="/sukucadang#icon-profile"><button type="button" class="btn btn-secondary mb-4 mr-2"><i class='flaticon-arrow-left-1'></i> Kembali</button></a>
+                                    <a href="javascript:history.back()"><button type="button" class="btn btn-secondary mb-4 mr-2"><i class='flaticon-arrow-left-1'></i> Kembali</button></a>
                                 </div>
                             </div>
                         </div>

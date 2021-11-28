@@ -21,7 +21,7 @@ class Pengajuan extends Model
     ];
 
     public function tipe_akun(){
-        return $this->belongsTo(TipeAkun::class);
+        return $this->belongsTo(TipeAkun::class, 'id_tipe_akun');
     }
 
     public function realisasi(){

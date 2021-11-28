@@ -47,11 +47,13 @@ Route::group(['middleware' => ['auth']], function ()
     Route::post('/detailrealisasi/destroy/{id_detail}', [App\Http\Controllers\DetailRealisasiController::class, 'destroy']);
 
 
-    Route::get('/jasakonsultan',[App\Http\Controllers\JasaKonsultanController::class, 'index2']);
-
-
-    Route::get('/jasaaudit',[App\Http\Controllers\JasaAuditController::class, 'index']);
-
-
-    Route::get('/jasaTKAD',[App\Http\Controllers\JasaKonsultanController::class, 'index']);
+    Route::get('/jasakonsultan',[App\Http\Controllers\SukuCadangController::class, 'index2']);
+    Route::get('/jasaaudit',[App\Http\Controllers\SukuCadangController::class, 'index3']);
+    Route::get('/jasaTKAD',[App\Http\Controllers\SukuCadangController::class, 'index4']);
+    
+    Route::get('/sewaperalatanpabrikkantor',[App\Http\Controllers\SukuCadangController::class, 'index5']);
+    Route::get('/kehumasan',[App\Http\Controllers\SukuCadangController::class, 'index6']);
+    Route::get('/inspeksiperijinan',[App\Http\Controllers\SukuCadangController::class, 'index7']);
+    Route::get('/peralatankerja',[App\Http\Controllers\SukuCadangController::class, 'index8']);
+    Route::get('/peralatankantor',[App\Http\Controllers\SukuCadangController::class, 'index9']);
 });

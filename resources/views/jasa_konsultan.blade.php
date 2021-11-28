@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('title','Suku Cadang')
+@section('title','Jasa Konsultan')
 @section('content')
 
 
@@ -13,7 +13,7 @@
                     <ul id="breadcrumbs" class="breadcrumb">
                         <li><a href="index.html"><i class="flaticon-home-fill"></i></a></li>
                         <li><a href="#">Anggaran</a></li>
-                        <li class="active"><a href="#">Suku Cadang</a> </li>
+                        <li class="active"><a href="#">{{$tipeakun->nama_tipe}}</a> </li>
                     </ul>
                 </div>
             </div>
@@ -24,7 +24,7 @@
                 <div class="widget-header border-bottom border-default">
                     <div class="row">
                         <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                            <h4>JASA KONSULTAN</h4>
+                            <h4>{{strtoupper($tipeakun->nama_tipe)}}</h4>
                         </div>
                     </div>
                 </div>
@@ -326,6 +326,9 @@
                                                             <th>Tanggal Selesai</th>
                                                             <th>Status Realisasi</th>
                                                             <th>Anggaran Terealisasi</th>
+                                                            @if($user->role_id == '2')
+                                                                <th class="invisible"></th>
+                                                            @endif
                                                             @if($user->role_id == '1')
                                                             <th class="invisible"></th>
                                                             @else
@@ -348,6 +351,11 @@
                                                             {!!$realisasi->status_real == 'ditolak' ? '<span class="badge badge-pills badge-danger">Ditolak</span>' : ''!!}
                                                             </td>
                                                             <td>Rp. {{number_format($realisasi->total_pengeluaran_real,2,',','.')}}</td>
+                                                            @if($user->role_id == '2' && $realisasi->status_real == 'pending')
+                                                            <td>
+                                                                <a href="/detailrealisasi/{{$realisasi->id}}"><button class="btn btn-primary">Bukti</button></a>
+                                                            </td>
+                                                            @endif
                                                             <td class="text-center">
                                                                 @if($realisasi->diajukan == 'no')
                                                                 <a href="/detailrealisasi/{{$realisasi->id}}"><button class="btn btn-primary">Bukti</button></a>
@@ -424,6 +432,7 @@
                                                                 @elseif($user->role_id == '2' && $realisasi->status_real == 'pending')
                                                                 <input type="checkbox" value="{{$realisasi->id}}" class="cb-child2">
                                                                 @elseif($user->role_id == '2' && $realisasi->status_real == 'ditolak')
+                                                                <a href="/detailrealisasi/{{$realisasi->id}}"><button class="btn btn-primary">Bukti</button></a>
                                                                 <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#alasanRealModal{{$realisasi->id}}">Alasan</button>
                                                                 <!-- Modal Alasan Penolakan Realisasi -->
                                                                 <div class="modal fade" id="alasanRealModal{{$realisasi->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -458,6 +467,9 @@
                                                             <th>Tanggal Selesai</th>
                                                             <th>Status Realisasi</th>
                                                             <th>Anggaran Terealisasi</th>
+                                                            @if($user->role_id == '2')
+                                                                <th class="invisible"></th>
+                                                            @endif
                                                             <th class="invisible"></th>
                                                         </tr>
                                                     </tfoot>

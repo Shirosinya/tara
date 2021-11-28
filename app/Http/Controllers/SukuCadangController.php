@@ -20,6 +20,7 @@ class SukuCadangController extends Controller
     {
         $user = Auth::user();
         $tipe_id = '1';
+        $tipeakun = TipeAkun::where('id', '=', $tipe_id)->first();
         $pengajuans = Pengajuan::where('id_tipe_akun', '=', $tipe_id)->get();
         if($user->id == 1){
             $realisasis = Realisasi::whereHas('pengajuan', function ($query) use ($tipe_id){
@@ -31,7 +32,7 @@ class SukuCadangController extends Controller
             })->get();
         }
         
-        return view('jasa_konsultan', compact('pengajuans','user','realisasis'));
+        return view('suku_cadang', compact('pengajuans','user','realisasis', 'tipeakun'));
     }
 
     /**
@@ -214,6 +215,7 @@ class SukuCadangController extends Controller
     {
         $user = Auth::user();
         $tipe_id = '2';
+        $tipeakun = TipeAkun::where('id', '=', $tipe_id)->first();
         $pengajuans = Pengajuan::where('id_tipe_akun', '=', $tipe_id)->get();
         if($user->id == 1){
             $realisasis = Realisasi::whereHas('pengajuan', function ($query) use ($tipe_id){
@@ -225,13 +227,14 @@ class SukuCadangController extends Controller
             })->get();
         }
         
-        return view('jasa_konsultan', compact('pengajuans','user','realisasis'));
+        return view('jasa_konsultan', compact('pengajuans','user','realisasis', 'tipeakun'));
     }
     
     public function index3()
     {
         $user = Auth::user();
         $tipe_id = '3';
+        $tipeakun = TipeAkun::where('id', '=', $tipe_id)->first();
         $pengajuans = Pengajuan::where('id_tipe_akun', '=', $tipe_id)->get();
         if($user->id == 1){
             $realisasis = Realisasi::whereHas('pengajuan', function ($query) use ($tipe_id){
@@ -243,13 +246,14 @@ class SukuCadangController extends Controller
             })->get();
         }
         
-        return view('jasa_konsultan', compact('pengajuans','user','realisasis'));
+        return view('jasa_audit', compact('pengajuans','user','realisasis', 'tipeakun'));
     }
     
     public function index4()
     {
         $user = Auth::user();
         $tipe_id = '4';
+        $tipeakun = TipeAkun::where('id', '=', $tipe_id)->first();
         $pengajuans = Pengajuan::where('id_tipe_akun', '=', $tipe_id)->get();
         if($user->id == 1){
             $realisasis = Realisasi::whereHas('pengajuan', function ($query) use ($tipe_id){
@@ -261,13 +265,14 @@ class SukuCadangController extends Controller
             })->get();
         }
         
-        return view('jasa_konsultan', compact('pengajuans','user','realisasis'));
+        return view('jasa_TKAD', compact('pengajuans','user','realisasis', 'tipeakun'));
     }
     
     public function index5()
     {
         $user = Auth::user();
         $tipe_id = '5';
+        $tipeakun = TipeAkun::where('id', '=', $tipe_id)->first();
         $pengajuans = Pengajuan::where('id_tipe_akun', '=', $tipe_id)->get();
         if($user->id == 1){
             $realisasis = Realisasi::whereHas('pengajuan', function ($query) use ($tipe_id){
@@ -279,13 +284,14 @@ class SukuCadangController extends Controller
             })->get();
         }
         
-        return view('jasa_konsultan', compact('pengajuans','user','realisasis'));
+        return view('sewa_peralatanpabrikkantor', compact('pengajuans','user','realisasis', 'tipeakun'));
     }
     
     public function index6()
     {
         $user = Auth::user();
         $tipe_id = '6';
+        $tipeakun = TipeAkun::where('id', '=', $tipe_id)->first();
         $pengajuans = Pengajuan::where('id_tipe_akun', '=', $tipe_id)->get();
         if($user->id == 1){
             $realisasis = Realisasi::whereHas('pengajuan', function ($query) use ($tipe_id){
@@ -297,13 +303,14 @@ class SukuCadangController extends Controller
             })->get();
         }
         
-        return view('jasa_konsultan', compact('pengajuans','user','realisasis'));
+        return view('kehumasan', compact('pengajuans','user','realisasis', 'tipeakun'));
     }
     
     public function index7()
     {
         $user = Auth::user();
         $tipe_id = '7';
+        $tipeakun = TipeAkun::where('id', '=', $tipe_id)->first();
         $pengajuans = Pengajuan::where('id_tipe_akun', '=', $tipe_id)->get();
         if($user->id == 1){
             $realisasis = Realisasi::whereHas('pengajuan', function ($query) use ($tipe_id){
@@ -315,13 +322,14 @@ class SukuCadangController extends Controller
             })->get();
         }
         
-        return view('jasa_konsultan', compact('pengajuans','user','realisasis'));
+        return view('inspeksiperijinan', compact('pengajuans','user','realisasis', 'tipeakun'));
     }
     
     public function index8()
     {
         $user = Auth::user();
         $tipe_id = '8';
+        $tipeakun = TipeAkun::where('id', '=', $tipe_id)->first();
         $pengajuans = Pengajuan::where('id_tipe_akun', '=', $tipe_id)->get();
         if($user->id == 1){
             $realisasis = Realisasi::whereHas('pengajuan', function ($query) use ($tipe_id){
@@ -333,13 +341,14 @@ class SukuCadangController extends Controller
             })->get();
         }
         
-        return view('jasa_konsultan', compact('pengajuans','user','realisasis'));
+        return view('peralatankerja', compact('pengajuans','user','realisasis', 'tipeakun'));
     }
     
     public function index9()
     {
         $user = Auth::user();
         $tipe_id = '9';
+        $tipeakun = TipeAkun::where('id', '=', $tipe_id)->first();
         $pengajuans = Pengajuan::where('id_tipe_akun', '=', $tipe_id)->get();
         if($user->id == 1){
             $realisasis = Realisasi::whereHas('pengajuan', function ($query) use ($tipe_id){
@@ -351,6 +360,6 @@ class SukuCadangController extends Controller
             })->get();
         }
         
-        return view('jasa_konsultan', compact('pengajuans','user','realisasis'));
+        return view('peralatankantor', compact('pengajuans','user','realisasis', 'tipeakun'));
     }
 }

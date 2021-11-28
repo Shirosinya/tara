@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('title','Suku Cadang')
+@section('title','Peralatan Pabrik & Kantor')
 @section('content')
 
 
@@ -12,7 +12,7 @@
                 <div class="crumbs">
                     <ul id="breadcrumbs" class="breadcrumb">
                         <li><a href="index.html"><i class="flaticon-home-fill"></i></a></li>
-                        <li><a href="#">Anggaran</a></li>
+                        <li><a href="#">Sewa</a></li>
                         <li class="active"><a href="#">{{$tipeakun->nama_tipe}}</a> </li>
                     </ul>
                 </div>

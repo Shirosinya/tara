@@ -155,11 +155,11 @@
                                         <a href="/jasakonsultan"> Jasa Konsultan </a>
                                     </li>
                                     <li>
-                                        <a href="ecommerce_product_details_2.html"> Jasa Audit </a>
+                                        <a href="/jasaaudit"> Jasa Audit </a>
                                     </li>
                                     <li>
                                         <!-- <div class="col-sm-12"> -->
-                                        <a href="ecommerce_product_details_2.html" style="margin-left:20px;"> Jasa Tenaga Kerja Alih Daya </a> 
+                                        <a href="/jasaTKAD" style="margin-left:20px;"> Jasa Tenaga Kerja Alih Daya </a> 
                                         <!-- </div> -->
                                     </li>
                                 </ul>
@@ -168,7 +168,7 @@
                                 <a href="#sewa" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"  data-parent="#ecommerce"> Sewa <i class="flaticon-right-arrow"></i> </a>
                                 <ul class="collapse list-unstyled sub-submenu" id="sewa">
                                     <li>
-                                        <a href="ecommerce_product_details_1.html" style="margin-left:30px;"> Peralatan Pabrik & Kantor </a>
+                                        <a href="/sewaperalatanpabrikkantor" style="margin-left:30px;"> Peralatan Pabrik & Kantor </a>
                                     </li>
                                 </ul>
                             </li>
@@ -176,38 +176,18 @@
                                 <a href="#lainnya" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"  data-parent="#ecommerce"> Lainnya <i class="flaticon-right-arrow"></i> </a>
                                 <ul class="collapse list-unstyled sub-submenu" id="lainnya">
                                     <li>
-                                        <a href="ecommerce_product_details_1.html"> Kehumasan </a>
+                                        <a href="/kehumasan"> Kehumasan </a>
                                     </li>
                                     <li>
-                                        <a href="ecommerce_product_details_1.html"> Inspeksi & Perijinan </a>
+                                        <a href="/inspeksiperijinan"> Inspeksi & Perijinan </a>
                                     </li>
                                     <li>
-                                        <a href="ecommerce_product_details_1.html"> Peralatan Kerja </a>
+                                        <a href="/peralatankerja"> Peralatan Kerja </a>
                                     </li>
                                     <li>
-                                        <a href="ecommerce_product_details_1.html"> Peralatan Kantor </a>
+                                        <a href="/peralatankantor"> Peralatan Kantor </a>
                                     </li>
                                 </ul>
-                            </li>
-                        </ul>
-                    </li>
-                    
-                    <li class="menu">
-                        <a href="#ui-features" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                            <div class="">
-                                <i class="flaticon-elements"></i>
-                                <span>Petty Cash</span>
-                            </div>
-                            <div>
-                                <i class="flaticon-right-arrow"></i>
-                            </div>
-                        </a>
-                        <ul class="collapse submenu list-unstyled" id="ui-features"  data-parent="#accordionExample">
-                            <li>
-                                <a href="ui_loader.html"> Biaya </a>
-                            </li>
-                            <li>
-                                <a href="ui_loader.html"> Top Up </a>
                             </li>
                         </ul>
                     </li>
