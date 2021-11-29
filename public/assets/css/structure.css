@@ -546,7 +546,7 @@ header.navbar:not(.tabMobileView) .navbar-nav .nav-item form.form-inline:before 
 #sidebar .navbar-brand .img-fluid {
     display: inline;
     width: 44px;
-    height: auto;
+    height: 44px;
     margin-left: 20px;
     margin-top: 5px;
 }
