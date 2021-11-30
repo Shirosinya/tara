@@ -7,7 +7,7 @@
             <div class="container">
                 <div class="page-header">
                     <div class="page-title">
-                        <h3>Anggaran Departemen Keamanan <?php echo date('Y'); ?></h3>
+                        <h3>Anggaran Departemen Keamanan {{$year}}</h3>
                     </div>
                 </div>
                 <div class="row layout-spacing accounts-widgets">
@@ -18,7 +18,7 @@
                                     <h6 class="value">Rp. {{number_format($pengajuan1,2,',','.')}}</h6>
                                     <p class="mt-2">Suku Cadang</p>
                                 </div>
-                                <div class="col-md-3 col-3 text-right" style="margin-left:-10px;">
+                                <div class="col-md-3 col-3 text-right" style="margin-left:-20px;">
                                     <i class="flaticon-currency"></i>
                                 </div>
                             </div>
@@ -37,7 +37,7 @@
                                     <h6 class="value">Rp. {{number_format($pengajuan2,2,',','.')}}</h6>
                                     <p class="mt-2" style="margin-bottom:-30px;">Jasa Konsultan</p>
                                 </div>
-                                <div class="col-md-3 col-3 text-right" style="margin-left:-10px;">
+                                <div class="col-md-3 col-3 text-right" style="margin-left:-20px;">
                                     <i class="flaticon-dollar-coin"></i>
                                 </div>
                             </div>
@@ -56,7 +56,7 @@
                                     <h6 class="value">Rp. {{number_format($pengajuan3,2,',','.')}}</h6>
                                     <p class="mt-2">Jasa Audit</p>
                                 </div>
-                                <div class="col-md-3 col-3 text-right" style="margin-left:-10px;">
+                                <div class="col-md-3 col-3 text-right" style="margin-left:-20px;">
                                     <i class="flaticon-dollar-coin"></i>
                                 </div>
                             </div>
@@ -75,7 +75,7 @@
                                     <h6 class="value">Rp. {{number_format($pengajuan4,2,',','.')}}</h6>
                                     <p class="mt-2" style="margin-bottom:-30px;">Jasa Tenaga Kerja & Alih Daya</p>
                                 </div>
-                                <div class="col-md-3 col-3 text-right" style="margin-left:-10px;">
+                                <div class="col-md-3 col-3 text-right" style="margin-left:-20px;">
                                     <i class="flaticon-dollar-coin"></i>
                                 </div>
                             </div>
@@ -96,7 +96,7 @@
                                     <h6 class="value">Rp. {{number_format($pengajuan5,2,',','.')}}</h6>
                                     <p class="mt-2" style="margin-bottom:-30px; margin-right: 40px;">Sewa Peralatan Pabrik & Kantor</p>
                                 </div>
-                                <div class="col-md-3 col-3 text-right" style="margin-left:-10px;">
+                                <div class="col-md-3 col-3 text-right" style="margin-left:-20px;">
                                     <i class="flaticon-money"></i>
                                 </div>
                             </div>
@@ -115,7 +115,7 @@
                                     <h6 class="value">Rp. {{number_format($pengajuan6,2,',','.')}}</h6>
                                     <p class="mt-2">Kehumasan</p>
                                 </div>
-                                <div class="col-md-3 col-3 text-right" style="margin-left:-10px;">
+                                <div class="col-md-3 col-3 text-right" style="margin-left:-20px;">
                                     <i class="flaticon-wallet"></i>
                                 </div>
                             </div>
@@ -134,7 +134,7 @@
                                     <h6 class="value">Rp. {{number_format($pengajuan7,2,',','.')}}</h6>
                                     <p class="mt-2">Inspeksi & Perijinan</p>
                                 </div>
-                                <div class="col-md-3 col-3 text-right" style="margin-left:-10px;">
+                                <div class="col-md-3 col-3 text-right" style="margin-left:-20px;">
                                     <i class="flaticon-wallet"></i>
                                 </div>
                             </div>
@@ -153,7 +153,7 @@
                                     <h6 class="value">Rp. {{number_format($pengajuan8,2,',','.')}}</h6>
                                     <p class="mt-2" style="margin-bottom:-30px;">Peralatan Kerja</p>
                                 </div>
-                                <div class="col-md-3 col-3 text-right" style="margin-left:-10px;">
+                                <div class="col-md-3 col-3 text-right" style="margin-left:-20px;">
                                     <i class="flaticon-wallet"></i>
                                 </div>
                             </div>
@@ -174,7 +174,7 @@
                                     <h6 class="value">Rp. {{number_format($pengajuan9,2,',','.')}}</h6>
                                     <p class="mt-2" style="margin-bottom:-30px; margin-right: 40px;">Peralatan Kantor</p>
                                 </div>
-                                <div class="col-md-3 col-3 text-right" style="margin-left:-10px;">
+                                <div class="col-md-3 col-3 text-right" style="margin-left:-20px;">
                                     <i class="flaticon-wallet"></i>
                                 </div>
                             </div>
@@ -187,147 +187,20 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-xl-6 col-12 layout-spacing">
-                        <div class="widget-content widget-content-area vendor-expenses-list-content br-4 p-0">
-                            <div class="vendor-expenses-list">                            
-                                <div class="vendor-expenses-header">
-                                    <div class="row">
-                                        <div class="col-md-5 col-sm-5 col-6">
-                                            <h5 class="mb-0">Vendor Expenses</h5>
-                                        </div>
-                                        <div class="col-md-7 col-sm-7 col-6 text-sm-right">
-                                            <ul class="nav justify-content-end vendor-expenses nav-pills" id="vendor-expenses" role="tablist">
-                                                <li class="nav-item">
-                                                    <a class="nav-link active" id="vendor-expenses-monthly-tab" data-toggle="pill" href="#vendor-expenses-monthly" role="tab" aria-controls="vendor-expenses-monthly" aria-selected="true">Monthly</a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a class="nav-link" id="vendor-expenses-yearly-tab" data-toggle="pill" href="#vendor-expenses-yearly" role="tab" aria-controls="vendor-expenses-yearly" aria-selected="false">Yearly</a>
-                                                </li>
-                                            </ul>
-                                        </div>
+                <div class="row layout-spacing">
+                    <div class="col-lg-12">
+                        <div class="statbox widget box box-shadow">
+                            <div class="widget-header">                                
+                                <div class="row">
+                                    <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+                                        <h4>Grafik Anggaran Akumulatif Departemen Keamanan Tahun {{$year}}</h4>
                                     </div>
                                 </div>
-                                <div class="vendor-expenses-body">
-                                    <div class="tab-content" id="vendor-expensesContent">
-                                        <div class="tab-pane fade show active" id="vendor-expenses-monthly" role="tabpanel" aria-labelledby="vendor-expenses-monthly-tab">
-                                            <div class="table-responsive">
-                                                <table class="table">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>Product</th>
-                                                            <th class="text-right">Amount</th>
-                                                        </tr>
-                                                    </thead>
-
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>
-                                                                <div class="pro-name mb-2">Apple</div>
-                                                                <div class="d-flex justify-content-between">
-                                                                    <div class="progress progress-md w-75">
-                                                                      <div class="progress-bar bg-primary" role="progressbar" style="width: 45.3%" aria-valuenow="45.3" aria-valuemin="0" aria-valuemax="100"></div>
-                                                                    </div>
-                                                                    <span>25.3%</span>
-                                                                </div>
-                                                            </td>
-                                                            <td class="action text-right">
-                                                                <p class="v-amount mb-0">$ 2,275</p>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <div class="pro-name mb-2">HP-Laptop</div>
-                                                                <div class="d-flex justify-content-between">
-                                                                    <div class="progress progress-md w-75">
-                                                                      <div class="progress-bar bg-primary" role="progressbar" style="width: 24.6%" aria-valuenow="24.6" aria-valuemin="0" aria-valuemax="100"></div>
-                                                                    </div>
-                                                                    <span>14.6%</span>
-                                                                </div>
-                                                            </td>
-                                                            <td class="action text-right">
-                                                                <p class="v-amount mb-0">$ 937</p>
-                                                            </td>
-                                                        </tr>
-
-                                                        <tr>
-                                                            <td>
-                                                                <div class="pro-name mb-2">Samsung Monitor</div>
-                                                                <div class="d-flex justify-content-between">
-                                                                    <div class="progress progress-md w-75">
-                                                                      <div class="progress-bar bg-primary" role="progressbar" style="width: 30.85%" aria-valuenow="30.85" aria-valuemin="0" aria-valuemax="100"></div>
-                                                                    </div>
-                                                                    <span>19.85%</span>
-                                                                </div>
-                                                            </td>
-                                                            <td class="action text-right">
-                                                                <p class="v-amount mb-0">$ 2,384</p>
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-
-                                            </div>
-
-                                        </div>
-                                        
-                                        <div class="tab-pane fade" id="vendor-expenses-yearly" role="tabpanel" aria-labelledby="vendor-expenses-yearly-tab">
-
-                                            <table class="table">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Product</th>
-                                                        <th class="text-right">Amount</th>
-                                                    </tr>
-                                                </thead>
-
-                                                <tbody>
-                                                    <tr>
-                                                        <td>
-                                                            <div class="pro-name mb-2">Apple</div>
-                                                            <div class="d-flex justify-content-between">
-                                                                <div class="progress progress-md w-75">
-                                                                  <div class="progress-bar bg-secondary" role="progressbar" style="width: 35.3%" aria-valuenow="24.3" aria-valuemin="0" aria-valuemax="100"></div>
-                                                                </div>
-                                                                <span>24.8%</span>
-                                                            </div>
-                                                        </td>
-                                                        <td class="action text-right">
-                                                            <p class="v-amount mb-0">$ 27,900</p>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <div class="pro-name mb-2">HP-Laptop</div>
-                                                            <div class="d-flex justify-content-between">
-                                                                <div class="progress progress-md w-75">
-                                                                  <div class="progress-bar bg-secondary" role="progressbar" style="width: 13.4%" aria-valuenow="13.4" aria-valuemin="0" aria-valuemax="100"></div>
-                                                                </div>
-                                                                <span>13.4%</span>
-                                                            </div>
-                                                        </td>
-                                                        <td class="action text-right">
-                                                            <p class="v-amount mb-0">$ 11,277</p>
-                                                        </td>
-                                                    </tr>
-
-                                                    <tr>
-                                                        <td>
-                                                            <div class="pro-name mb-2">Samsung Monitor</div>
-                                                            <div class="d-flex justify-content-between">
-                                                                <div class="progress progress-md w-75">
-                                                                  <div class="progress-bar bg-secondary" role="progressbar" style="width: 18.7%" aria-valuenow="18.7" aria-valuemin="0" aria-valuemax="100"></div>
-                                                                </div>
-                                                                <span>18.7%</span>
-                                                            </div>
-                                                        </td>
-                                                        <td class="action text-right">
-                                                            <p class="v-amount mb-0">$ 28,508</p>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
+                            </div>
+                            <div class="widget-content widget-content-area">
+                                <div class="row">
+                                    <div class="col-lg-12 mb-4">
+                                        <div id="chart_line"></div>
                                     </div>
                                 </div>
                             </div>
@@ -337,6 +210,90 @@
             </div>
         </div>
         <!--  END CONTENT PART  -->
-
 @endsection
-<!-- </html> -->
+@section('chart')
+    <script>
+        (function() {
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+      var data = google.visualization.arrayToDataTable([
+        ['Bulan', 'Rencana', 'Realisasi'],
+        ['Jan',  {{$peng_arr[0]}},      {{$real_arr[0]}}],
+        ['Feb',  {{$peng_arr[1]}},      {{$real_arr[1]}}],
+        ['Mar',  {{$peng_arr[2]}},      {{$real_arr[2]}}],
+        ['Apr',  {{$peng_arr[3]}},      {{$real_arr[3]}}],
+        ['Mei',  {{$peng_arr[4]}},      {{$real_arr[4]}}],
+        ['Jun',  {{$peng_arr[5]}},      {{$real_arr[5]}}],
+        ['Jul',  {{$peng_arr[6]}},      {{$real_arr[6]}}],
+        ['Agu',  {{$peng_arr[7]}},      {{$real_arr[7]}}],
+        ['Sep',  {{$peng_arr[8]}},      {{$real_arr[8]}}],
+        ['Okt',  {{$peng_arr[9]}},      {{$real_arr[9]}}],
+        ['Nov',  {{$peng_arr[10]}},      {{$real_arr[10]}}],
+        ['Des',  {{$peng_arr[11]}},      {{$real_arr[11]}}],
+      ]);
+
+    // Options
+    var options = {
+        fontName: 'Roboto',
+        height: 400,
+        curveType: 'function',
+        fontSize: 12,
+        chartArea: {
+            left: '5%',
+            width: '90%',
+            height: 350
+        },
+        pointSize: 4,
+        tooltip: {
+            textStyle: {
+                fontName: 'Roboto',
+                fontSize: 13
+            }
+        },
+        colors: [ "#3232b7", "#f58b22"
+        ],
+        vAxis: {
+            title: 'Rencana dan Realisasi',
+            titleTextStyle: {
+                fontSize: 13,
+                italic: false
+            },
+            gridlines:{
+                color: '#e5e5e5',
+                count: 10
+            },
+            minValue: 0
+        },
+        legend: {
+            position: 'top',
+            alignment: 'center',
+            textStyle: {
+                fontSize: 12
+            }
+        }
+    };
+
+      var chart = new google.visualization.LineChart(document.getElementById('chart_line'));
+      chart.draw(data, options);
+    }
+    
+    // Resize chart -----------------------
+    $(function () {
+
+        // Resize chart on sidebar width change and window resize
+        $(window).on('resize', resize);
+        $(".sidebar-control").on('click', resize);
+
+        // Resize function
+        function resize() {
+            drawChart();
+        }
+
+    });
+
+})();
+
+    </script>
+    @stop

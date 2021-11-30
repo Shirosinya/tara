@@ -68,6 +68,9 @@
             text-align: center;
             text-shadow: rgb(176, 190, 217) 1px 1px, rgb(176, 190, 217) -1px -1px, rgb(176, 190, 217) 1px -1px, rgb(176, 190, 217) -1px 1px;
         }
+        #chart_google, #chart_google_c, #chart_pie, #chart_donut,
+        #chart_3dpie, #chart_diffpie, #chart_line, #chart_area, #chart_combo 
+        { width: 100%; height: 400px; font-size: 11px; }
     </style>
     <!--  BEGIN CUSTOM STYLE FILE  -->
 </head>
@@ -255,10 +258,12 @@
     <!--  END FOOTER  -->
     <!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
     <script src="../../assets/js/libs/jquery-3.1.1.min.js"></script>
+    <script src="../../assets/js/loader.js"></script>
     <script src="../../plugins/scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
     <script src="../../bootstrap/js/popper.min.js"></script>
     <script src="../../bootstrap/js/bootstrap.min.js"></script>
     <script src="../../assets/js/app.js"></script>
+    <script src="../../plugins/blockui/jquery.blockUI.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/loadjs/4.2.0/loadjs.min.js"></script>
     <script>
         $(document).ready(function() {
@@ -278,6 +283,10 @@
     <script src="../../plugins/progressbar/progressbar.min.js"></script>
     <script src="../../assets/js/accounting-dashboard/accounting-custom.js"></script>
     <script src="../../plugins/table/datatable/datatables.js"></script>
+    <script src="../../plugins/charts/googlecharts/loader.js"></script>
+    
+    @yield('chart')
+    
     <script>        
         $('#default-ordering').DataTable( {
             "columnDefs": [

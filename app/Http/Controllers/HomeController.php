@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use App\Models\Pengajuan;
 use App\Models\TipeAkun;
 use App\Models\Realisasi;
@@ -113,22 +114,48 @@ class HomeController extends Controller
         })->sum('total_pengeluaran_real');
 
         //Grafik Data Rencana dan Realisasi
-        $januari = Pengajuan::whereYear('created_at', '=', $year)
-        ->whereMonth('created_at', '=', '01')->where('status', '=', 'disetujui')->sum('total_pengeluaran');
-        $januari_real = Realisasi::whereYear('created_at', '=', $year)
-        ->whereMonth('created_at', '=', '01')->where('status_real', '=', 'disetujui')->sum('total_pengeluaran_real');
-        $februari = Pengajuan::whereYear('created_at', '=', $year)
-        ->whereMonth('created_at', '=', '02')->where('status', '=', 'disetujui')->sum('total_pengeluaran');
-        $februari_real = Realisasi::whereYear('created_at', '=', $year)
-        ->whereMonth('created_at', '=', '02')->where('status_real', '=', 'disetujui')->sum('total_pengeluaran_real');
-        $november = Pengajuan::whereYear('created_at', '=', $year)
-        ->whereMonth('created_at', '=', '11')->where('status', '=', 'disetujui')->sum('total_pengeluaran');
-        // dd($november);
-        $november_real = Realisasi::whereYear('created_at', '=', $year)
-        ->whereMonth('created_at', '=', '11')->where('status_real', '=', 'disetujui')->sum('total_pengeluaran_real');
+        $data_peng = Pengajuan::select([
+            DB::raw("sum(total_pengeluaran) as jumlah"),
+//                DB::raw("EXTRACT(MONTH FROM created_at) as mont"),
+//                DB::raw("YEAR(created_at) as year"),
+            DB::raw("MONTH(tanggal_mulai) as mont"),
+        ])
+            ->whereYear("created_at", "=", $year)
+            ->where("status", "=", "disetujui")
+            ->groupBy("mont")
+            ->orderBy("mont", "ASC")
+            ->get();
+        $pengajuan_val = $data_peng->all();
+        $peng_arr = array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+        foreach($pengajuan_val as $pval){
+            if($pval['mont']-1 == 0){
+                $peng_arr[$pval['mont']-1] = $pval['jumlah']; 
+            }else{
+                $peng_arr[$pval['mont']-1] = $pval['jumlah'] + $peng_arr[$pval['mont']-2];
+            }
+        } 
         
+        $data_real = Realisasi::select([
+            DB::raw("sum(total_pengeluaran_real) as jumlah"),
+            DB::raw("MONTH(created_at) as mont"),
+        ])
+            ->whereYear("created_at", "=", $year)
+            ->where("status_real", "=", "disetujui")
+            ->groupBy("mont")
+            ->orderBy("mont", "ASC")
+            ->get();
+        $real_val = $data_real->all();
+        $real_arr = array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+        foreach($real_val as $rval){
+            if($rval['mont']-1 == 0){
+                $real_arr[$rval['mont']-1] = $rval['jumlah']; 
+            }else{
+                $real_arr[$rval['mont']-1] = $rval['jumlah'] + $real_arr[$rval['mont']-2];
+            }
+        } 
+
         return view('dashboard',compact('user', 'pengajuan1', 'pengajuan2', 'pengajuan3', 'pengajuan4', 'pengajuan5', 'pengajuan6'
         , 'pengajuan7', 'pengajuan8', 'pengajuan9', 'realisasi1', 'realisasi2', 'realisasi3', 'realisasi4', 'realisasi5'
-        , 'realisasi6', 'realisasi7', 'realisasi8', 'realisasi9'));
+        , 'realisasi6', 'realisasi7', 'realisasi8', 'realisasi9','peng_arr', 'real_arr', 'year'));
     }
 }
