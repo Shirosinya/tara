@@ -89,7 +89,7 @@
                                                                     </div>
                                                                 </div>
                                                                 
-                                                                <input type="hidden" class="form-control" name="id_tipe_akun" value="1">
+                                                                <input type="hidden" class="form-control" name="id_tipe_akun" value="2">
                                                                 <!-- <div class="form-group mb-4">
                                                                     <label for="exampleFormControlTextarea1">Example textarea</label>
                                                                     <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
@@ -192,7 +192,7 @@
                                                                                     </div>
                                                                                 </div>
                                                                                 
-                                                                                <input type="hidden" class="form-control" name="id_tipe_akun" value="1">
+                                                                                <input type="hidden" class="form-control" name="id_tipe_akun" value="2">
                                                                                 
                                                                                 <div class="form-group mb-4">
                                                                                     <label for="rupiah">Jumlah Anggaran</label>

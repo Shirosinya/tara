@@ -126,15 +126,29 @@ class HomeController extends Controller
             ->orderBy("mont", "ASC")
             ->get();
         $pengajuan_val = $data_peng->all();
+        $pv_arr = array();
+        $pv_money = array();
+        foreach($pengajuan_val as $peng){
+            array_push($pv_arr, $peng['mont']-1);
+            array_push($pv_money, $peng['jumlah']);
+        }
         $peng_arr = array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-        foreach($pengajuan_val as $pval){
-            if($pval['mont']-1 == 0){
-                $peng_arr[$pval['mont']-1] = $pval['jumlah']; 
+        $indexA = 0;
+        $indexB = 0;
+        $total = 0;
+        foreach($peng_arr as $peng){
+            if(in_array($indexA,$pv_arr)){
+                $total += $pv_money[$indexB];
+                $peng_arr[$indexA] = $total;
+                //ketika tidak ketemu index yang sama dengan (month - 1) maka indexB increment
+                $indexB++;
             }else{
-                $peng_arr[$pval['mont']-1] = $pval['jumlah'] + $peng_arr[$pval['mont']-2];
+                $peng_arr[$indexA] = $total;
             }
-        } 
-        
+            $indexA++;
+        }
+
+        // dd($peng_arr);
         $data_real = Realisasi::select([
             DB::raw("sum(total_pengeluaran_real) as jumlah"),
             DB::raw("MONTH(created_at) as mont"),
@@ -146,14 +160,27 @@ class HomeController extends Controller
             ->get();
         $real_val = $data_real->all();
         $real_arr = array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-        foreach($real_val as $rval){
-            if($rval['mont']-1 == 0){
-                $real_arr[$rval['mont']-1] = $rval['jumlah']; 
+        $rv_arr = array();
+        $rv_money = array();
+        foreach($real_val as $real){
+            array_push($rv_arr, $real['mont']-1);
+            array_push($rv_money, $real['jumlah']);
+        }
+        $indexA = 0;
+        $indexB = 0;
+        $total = 0;
+        foreach($real_arr as $real){
+            if(in_array($indexA,$rv_arr)){
+                $total += $rv_money[$indexB];
+                $real_arr[$indexA] = $total;
+                //ketika tidak ketemu index yang sama dengan (month - 1) maka indexB increment
+                $indexB++;
             }else{
-                $real_arr[$rval['mont']-1] = $rval['jumlah'] + $real_arr[$rval['mont']-2];
+                $real_arr[$indexA] = $total;
             }
-        } 
-
+            $indexA++;
+        }
+        // dd($real_arr);
         return view('dashboard',compact('user', 'pengajuan1', 'pengajuan2', 'pengajuan3', 'pengajuan4', 'pengajuan5', 'pengajuan6'
         , 'pengajuan7', 'pengajuan8', 'pengajuan9', 'realisasi1', 'realisasi2', 'realisasi3', 'realisasi4', 'realisasi5'
         , 'realisasi6', 'realisasi7', 'realisasi8', 'realisasi9','peng_arr', 'real_arr', 'year'));
