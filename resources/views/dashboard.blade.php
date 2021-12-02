@@ -238,7 +238,7 @@
     var options = {
         fontName: 'Roboto',
         height: 400,
-        curveType: 'function',
+        curveType: 'none',
         fontSize: 12,
         chartArea: {
             left: '5%',
