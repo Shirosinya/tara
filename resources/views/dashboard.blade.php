@@ -10,6 +10,7 @@
                         <h3>Anggaran Departemen Keamanan {{$year}}</h3>
                     </div>
                 </div>
+                <a href="/rekap-export"><button class="btn btn-primary">Export Excel</button></a>
                 <div class="row layout-spacing accounts-widgets">
                     <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12 mb-xl-0 mb-4">
                         <div class="widget-content widget-content-area br-4 accounts-{{($realisasi1/$pengajuan1*100) <= 25 ? 'income' : (($realisasi1/$pengajuan1*100) <= 50 ? 'cogs' : (($realisasi1/$pengajuan1*100) <= 75 ? 'profit' : 'expenses'))}}">

@@ -130,7 +130,8 @@ class HomeController extends Controller
         $pv_money = array();
         foreach($pengajuan_val as $peng){
             array_push($pv_arr, $peng['mont']-1);
-            array_push($pv_money, $peng['jumlah']);
+            //intval karena ada kemungkinan value yang diinputkan tipe string
+            array_push($pv_money, intval($peng['jumlah']));
         }
         $peng_arr = array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
         $indexA = 0;
@@ -148,13 +149,16 @@ class HomeController extends Controller
             $indexA++;
         }
 
-        // dd($peng_arr);
+        $data_pengajuan = Pengajuan::where('status', '=', 'disetujui');
         $data_real = Realisasi::select([
-            DB::raw("sum(total_pengeluaran_real) as jumlah"),
-            DB::raw("MONTH(created_at) as mont"),
+            DB::raw("sum(realisasis.total_pengeluaran_real) as jumlah"),
+            DB::raw("MONTH(pengajuans.tanggal_mulai) as mont"),
         ])
-            ->whereYear("created_at", "=", $year)
-            ->where("status_real", "=", "disetujui")
+            ->joinSub($data_pengajuan, 'pengajuans', function($join){
+                $join->on('pengajuans.id', '=', 'realisasis.id_pengajuan');
+            })
+            ->whereYear("pengajuans.tanggal_mulai", "=", $year)
+            ->where("realisasis.status_real", "=", "disetujui")
             ->groupBy("mont")
             ->orderBy("mont", "ASC")
             ->get();
@@ -164,7 +168,8 @@ class HomeController extends Controller
         $rv_money = array();
         foreach($real_val as $real){
             array_push($rv_arr, $real['mont']-1);
-            array_push($rv_money, $real['jumlah']);
+            //intval karena ada kemungkinan value yang diinputkan tipe string
+            array_push($rv_money, intval($real['jumlah']));
         }
         $indexA = 0;
         $indexB = 0;
@@ -180,7 +185,7 @@ class HomeController extends Controller
             }
             $indexA++;
         }
-        // dd($real_arr);
+        // dd($peng_arr, $real_arr);
         return view('dashboard',compact('user', 'pengajuan1', 'pengajuan2', 'pengajuan3', 'pengajuan4', 'pengajuan5', 'pengajuan6'
         , 'pengajuan7', 'pengajuan8', 'pengajuan9', 'realisasi1', 'realisasi2', 'realisasi3', 'realisasi4', 'realisasi5'
         , 'realisasi6', 'realisasi7', 'realisasi8', 'realisasi9','peng_arr', 'real_arr', 'year'));

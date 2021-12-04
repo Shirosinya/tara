@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Pengajuan;
+use App\Models\TipeAkun;
+use App\Models\Realisasi;
+use Maatwebsite\Excel\Facades\Excel;
+// use App\Http\Controllers\Controller;
 
 class RekapController extends Controller
 {
@@ -11,74 +16,17 @@ class RekapController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //
+
+    public function templateExport(){
+        $data = TipeAkun::all();
+        $data_peng = Pengajuan::where('status', '=', 'disetujui')->get();
+        $data_real = Realisasi::where('status_real', '=', 'disetujui')->get();
+        return view('excel_export',compact('data', 'data_peng', 'data_real'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function exportExcelView()
     {
-        //
+        return Excel::download(new \App\Exports\RekapExportView(), 'rekap_anggaran.xlsx');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }

@@ -56,4 +56,8 @@ Route::group(['middleware' => ['auth']], function ()
     Route::get('/inspeksiperijinan',[App\Http\Controllers\SukuCadangController::class, 'index7']);
     Route::get('/peralatankerja',[App\Http\Controllers\SukuCadangController::class, 'index8']);
     Route::get('/peralatankantor',[App\Http\Controllers\SukuCadangController::class, 'index9']);
+
+    Route::get('/rekap-export',[App\Http\Controllers\RekapController::class, 'exportExcelView']);
+    Route::get('/rekap',[App\Http\Controllers\RekapController::class, 'templateExport']);
+    
 });

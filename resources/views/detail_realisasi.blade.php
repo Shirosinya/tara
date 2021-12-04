@@ -84,7 +84,7 @@
                                                         </div>
                                                         <div class="form-group mb-4 mt-3">
                                                             <label for="exampleFormControlFile1">File Bukti</label>
-                                                            <input required name="file_bukti" type="file" accept="image/*" class="form-control-file" id="exampleFormControlFile1">
+                                                            <input required name="file_bukti" type="file" class="form-control-file" id="exampleFormControlFile1">
                                                         </div>
                                                 </div>   
                                                 <div class="modal-footer">
@@ -178,7 +178,7 @@
                                                                         </div>
                                                                         <div class="form-group mb-4 mt-3">
                                                                             <label for="exampleFormControlFile1">File Bukti</label>
-                                                                            <input name="file_bukti" type="file" accept="image/*" class="form-control-file" id="exampleFormControlFile1">
+                                                                            <input name="file_bukti" type="file" class="form-control-file" id="exampleFormControlFile1">
                                                                             <img class="mt-3" width="100" height="67" src="{{asset('/storage/images/detail_realisasi/'.$detail_realisasi->file_bukti)}}" alt="{{$detail_realisasi->file_bukti}}">
                                                                         </div>
                                                                 </div>   

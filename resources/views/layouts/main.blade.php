@@ -137,6 +137,7 @@
                                 <span>Dashboard</span>
                             </div>
                         </a>
+                    </li>
                     <li class="menu">
                         <a href="#ecommerce" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                             <div class="">
@@ -193,6 +194,14 @@
                                 </ul>
                             </li>
                         </ul>
+                    </li>
+                    <li class="menu">
+                        <a href="/" class="dropdown-toggle">
+                            <div class="">
+                                <i class="flaticon-computer-6 ml-1"></i>
+                                <span>Rekap</span>
+                            </div>
+                        </a>
                     </li>
                 </ul>
                 <div style="margin: 0px 10px 0px 10px; color: white;">

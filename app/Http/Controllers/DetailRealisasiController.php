@@ -51,7 +51,7 @@ class DetailRealisasiController extends Controller
             'nama_bukti' => 'required',
             'tanggal' => 'required',
             'pengeluaran' => 'required',
-            'file_bukti' => 'required',
+            'file_bukti' => 'required|mimes:jpg,png,jpeg',
             'id_tipe_akun' => 'required',
         ]);
 
@@ -98,6 +98,7 @@ class DetailRealisasiController extends Controller
             'tanggal' => 'required',
             'pengeluaran' => 'required',
             'id_tipe_akun' => 'required',
+            'file_bukti' => 'mimes:jpg,png,jpeg',
         ]);
         
         $input = $request->all();
