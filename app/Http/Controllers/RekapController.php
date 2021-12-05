@@ -17,12 +17,12 @@ class RekapController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function templateExport(){
-        $data = TipeAkun::all();
-        $data_peng = Pengajuan::where('status', '=', 'disetujui')->get();
-        $data_real = Realisasi::where('status_real', '=', 'disetujui')->get();
-        return view('excel_export',compact('data', 'data_peng', 'data_real'));
-    }
+    // public function templateExport(){
+    //     $data = TipeAkun::all();
+    //     $data_peng = Pengajuan::where('status', '=', 'disetujui')->get();
+    //     $data_real = Realisasi::where('status_real', '=', 'disetujui')->get();
+    //     return view('excel_export',compact('data', 'data_peng', 'data_real'));
+    // }
 
     public function exportExcelView()
     {
