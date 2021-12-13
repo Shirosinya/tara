@@ -24,9 +24,45 @@ class DetailRealisasiController extends Controller
         $pengajuan = Pengajuan::where('id', '=', $realisasis->id_pengajuan)->first();
         $detail_realisasis = DetailRealisasi::where('id_realisasi', '=', $id)->get();
         $id_realisasi = $id;
-        // $dr = DetailRealisasi::all();
-        // dd($id);
-        return view('detail_realisasi', compact('realisasis', 'detail_realisasis', 'user', 'id_realisasi', 'pengajuan'));
+        $idtipe = $pengajuan->id_tipe_akun;
+        switch ($idtipe) {
+            case '1':
+                $href = "/sukucadang";
+                break;
+
+            case '2':
+                $href = "/jasakonsultan";
+                break;
+
+            case '3':
+                $href = "/jasaaudit";
+                break;
+
+            case '4':
+                $href = "/jasaTKAD";
+                break;
+
+            case '5':
+                $href = "/sewaperalatanpabrikkantor";
+                break;
+
+            case '6':
+                $href = "/kehumasan";
+                break;
+
+            case '7':
+                $href = "/inspeksiperijinan";
+                break;
+
+            case '8':
+                $href = "/peralatankerja";
+                break;
+
+            case '9':
+                $href = "/peralatankantor";
+                break;
+        }
+        return view('detail_realisasi', compact('realisasis', 'detail_realisasis', 'user', 'id_realisasi', 'pengajuan', 'href'));
     }
 
     /**

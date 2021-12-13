@@ -234,7 +234,7 @@
                                             </tfoot>
                                         </table>
                                     </div>
-                                    <a href="javascript:history.back()"><button type="button" class="btn btn-secondary mb-4 mr-2"><i class='flaticon-arrow-left-1'></i> Kembali</button></a>
+                                    <a href="{{$href}}"><button type="button" class="btn btn-secondary mb-4 mr-2"><i class='flaticon-arrow-left-1'></i> Kembali</button></a>
                                 </div>
                             </div>
                         </div>
