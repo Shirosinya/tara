@@ -2,7 +2,7 @@
     <head>
     </head>
     <body>
-        <h1>Anggaran Departemen Keamanan</h1>
+        <h1>Anggaran Departemen Keamanan {{$year}}</h1>
         <table style="border: 1px solid black; border-collapse: collapse;" >
             <thead>
                 <tr>
@@ -11,7 +11,7 @@
                     <th style="border: 1px solid black; text-align: center;"rowspan="2"><b>Detail</b></th>
                     <th style="border: 1px solid black; text-align: center;"><b>RUPS RKAP</b></th>
                     <th style="border: 1px solid black; text-align: center;"colspan="2" rowspan="2"><b>Keterangan</b></th>
-                    <th style="border: 1px solid black; text-align: center;"colspan="12"><b>Target Realisasi 2021(Rp)</b></th>
+                    <th style="border: 1px solid black; text-align: center;"colspan="12"><b>Target Realisasi {{$year}}(Rp)</b></th>
                     <th style="border: 1px solid black; text-align: center;"rowspan="2"><b>Total</b></th>
                 </tr>
                 <tr>
@@ -196,7 +196,7 @@
                         @endif
                     @endforeach
                     <!-- Grand Total, Total Presentase Perbulan Row Rencana -->
-                    <td style="border: 1px solid black; text-align: right; background: lightgoldenrodyellow; color: darkorange;"><b>{{number_format($total_cumulative_rencana/$rups_grand_total*100, 2, ',', ' ')}}%</b></td>
+                    <td style="border: 1px solid black; text-align: right; background: lightgoldenrodyellow; color: darkorange;"><b>{{$rups_grand_total != 0 ? number_format($total_cumulative_rencana/$rups_grand_total*100, 2, ',', ' ') : 0}}%</b></td>
                 </tr>
                 <!-- Grand Total Row Realisasi -->
                 <tr>
@@ -246,7 +246,7 @@
                             <td style="border: 1px solid black; text-align: right; background: lightgoldenrodyellow; color: #1a83b8;"><b>{{number_format($cumulative/$rups_grand_total*100, 2, ',', ' ')}}%</b></td>
                         @endif
                     @endforeach
-                    <td style="border: 1px solid black; text-align: right; background: lightgoldenrodyellow; color: #1a83b8;"><b>{{number_format($total_cumulative_realisasi/$rups_grand_total*100, 2, ',', ' ')}}%</b></td>
+                    <td style="border: 1px solid black; text-align: right; background: lightgoldenrodyellow; color: #1a83b8;"><b>{{$rups_grand_total != 0 ? number_format($total_cumulative_realisasi/$rups_grand_total*100, 2, ',', ' ') : 0}}%</b></td>
                 </tr>
             </tbody>
         </table>

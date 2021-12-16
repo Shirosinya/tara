@@ -200,7 +200,7 @@
                 </ul>
                 <div style="margin: 0px 10px 0px 10px; color: white;">
                     <p>TARA - Pencatatan Anggaran</p>
-                    <p>Developed by Fernaldi W.</p>
+                    <!-- Developed by Fernaldi Widharsono -->
                 </div>
             </nav>
         </div>
