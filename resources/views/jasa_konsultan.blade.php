@@ -359,9 +359,9 @@
                                                             <td class="text-center">
                                                                 @if($realisasi->diajukan == 'no')
                                                                 <a href="/detailrealisasi/{{$realisasi->id}}"><button class="btn btn-primary">Bukti</button></a>
-                                                                <button class="btn btn-info" data-toggle="modal" data-target="#PengajuanModal{{$pengajuan->id}}">Ajukan</button>
+                                                                <button class="btn btn-info" data-toggle="modal" data-target="#PengajuanModal{{$realisasi->id}}">Ajukan</button>
                                                                 <!-- Modal Mengajukan Realisasi -->
-                                                                <div id="PengajuanModal{{$pengajuan->id}}" class="modal fade show text-center danger-alert" tabindex="-1" role="dialog" aria-labelledby="exampleDangerAlertLabel">
+                                                                <div id="PengajuanModal{{$realisasi->id}}" class="modal fade show text-center danger-alert" tabindex="-1" role="dialog" aria-labelledby="exampleDangerAlertLabel">
                                                                     <div class="modal-dialog" role="document">
                                                                         <div class="modal-content">
                                                                             <div class="modal-body">
@@ -457,6 +457,9 @@
                                                                 <!-- Modal Alasan Penolakan Realisasi End -->
                                                                 @endif
                                                             </td>
+                                                            @if($user->role_id == '2' && $realisasi->status_real != 'pending')
+                                                                <td class="invisible"></td>
+                                                            @endif
                                                         </tr>
                                                         @endforeach
                                                     </tbody>

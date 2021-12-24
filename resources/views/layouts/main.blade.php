@@ -199,7 +199,7 @@
                     @endif
                 </ul>
                 <div style="margin: 0px 10px 0px 10px; color: white;">
-                    <p>TARA - Pencatatan Anggaran</p>
+                    <p>TARA - Pemantauan Anggaran</p>
                     <!-- Developed by Fernaldi Widharsono -->
                 </div>
             </nav>
@@ -307,17 +307,17 @@
         } );
         
         $('#default-ordering1').DataTable( {
-            "columnDefs": [
-            {
-                "targets": [ 6 ],
-                "sortable": false,
-                "searchable": false
-            }],
+            // "columnDefs": [
+            // {
+            //     "targets": [ 6 ],
+            //     "sortable": false,
+            //     "searchable": false
+            // }],
             "language": {
                 "paginate": { "previous": "<i class='flaticon-arrow-left-1'></i>", "next": "<i class='flaticon-arrow-right'></i>" },
                 "info": "Showing page _PAGE_ of _PAGES_"
             },
-            "order": [[ 0, "desc" ]],
+            // "order": [[ 1, "desc" ]],
             // "columnDefs": [
             // {
             //     "targets": [ 6 ],

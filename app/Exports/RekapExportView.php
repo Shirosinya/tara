@@ -19,8 +19,12 @@ class RekapExportView implements FromView
     {
         $year = date("Y");
         $data = TipeAkun::all();
-        $data_peng = Pengajuan::where('status', '=', 'disetujui')->get();
-        $data_real = Realisasi::where('status_real', '=', 'disetujui')->get();
+        $data_peng = Pengajuan::whereYear('tanggal_mulai', '=', $year)->where('status', '=', 'disetujui')->get();
+        $dp_id = array();
+        foreach($data_peng as $dp){
+            array_push($dp_id,$dp->id);
+        }
+        $data_real = Realisasi::whereIn('id_pengajuan',$dp_id)->where('status_real', '=', 'disetujui')->get();
         return view('excel_export',compact('data', 'data_peng', 'data_real','year'));
     }
 }

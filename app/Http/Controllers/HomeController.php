@@ -30,15 +30,20 @@ class HomeController extends Controller
     {
         $user = Auth::user();
         $year = date('Y');
-        $pengajuan1 = Pengajuan::whereYear('created_at', '=', $year)->where('status', '=', 'disetujui')->where('id_tipe_akun', '=', '1')->sum('total_pengeluaran');
-        $pengajuan2 = Pengajuan::whereYear('created_at', '=', $year)->where('status', '=', 'disetujui')->where('id_tipe_akun', '=', '2')->sum('total_pengeluaran');
-        $pengajuan3 = Pengajuan::whereYear('created_at', '=', $year)->where('status', '=', 'disetujui')->where('id_tipe_akun', '=', '3')->sum('total_pengeluaran');
-        $pengajuan4 = Pengajuan::whereYear('created_at', '=', $year)->where('status', '=', 'disetujui')->where('id_tipe_akun', '=', '4')->sum('total_pengeluaran');
-        $pengajuan5 = Pengajuan::whereYear('created_at', '=', $year)->where('status', '=', 'disetujui')->where('id_tipe_akun', '=', '5')->sum('total_pengeluaran');
-        $pengajuan6 = Pengajuan::whereYear('created_at', '=', $year)->where('status', '=', 'disetujui')->where('id_tipe_akun', '=', '6')->sum('total_pengeluaran');
-        $pengajuan7 = Pengajuan::whereYear('created_at', '=', $year)->where('status', '=', 'disetujui')->where('id_tipe_akun', '=', '7')->sum('total_pengeluaran');
-        $pengajuan8 = Pengajuan::whereYear('created_at', '=', $year)->where('status', '=', 'disetujui')->where('id_tipe_akun', '=', '8')->sum('total_pengeluaran');
-        $pengajuan9 = Pengajuan::whereYear('created_at', '=', $year)->where('status', '=', 'disetujui')->where('id_tipe_akun', '=', '9')->sum('total_pengeluaran');
+        $arr_pengid = array(); //untuk menampung id filtered by year
+        $peng_ids = Pengajuan::whereYear('tanggal_mulai', '=', $year)->where('status', '=', 'disetujui')->get();
+        foreach($peng_ids as $peng_id){
+            array_push($arr_pengid, $peng_id->id);
+        }
+        $pengajuan1 = Pengajuan::whereYear('tanggal_mulai', '=', $year)->where('status', '=', 'disetujui')->where('id_tipe_akun', '=', '1')->sum('total_pengeluaran');
+        $pengajuan2 = Pengajuan::whereYear('tanggal_mulai', '=', $year)->where('status', '=', 'disetujui')->where('id_tipe_akun', '=', '2')->sum('total_pengeluaran');
+        $pengajuan3 = Pengajuan::whereYear('tanggal_mulai', '=', $year)->where('status', '=', 'disetujui')->where('id_tipe_akun', '=', '3')->sum('total_pengeluaran');
+        $pengajuan4 = Pengajuan::whereYear('tanggal_mulai', '=', $year)->where('status', '=', 'disetujui')->where('id_tipe_akun', '=', '4')->sum('total_pengeluaran');
+        $pengajuan5 = Pengajuan::whereYear('tanggal_mulai', '=', $year)->where('status', '=', 'disetujui')->where('id_tipe_akun', '=', '5')->sum('total_pengeluaran');
+        $pengajuan6 = Pengajuan::whereYear('tanggal_mulai', '=', $year)->where('status', '=', 'disetujui')->where('id_tipe_akun', '=', '6')->sum('total_pengeluaran');
+        $pengajuan7 = Pengajuan::whereYear('tanggal_mulai', '=', $year)->where('status', '=', 'disetujui')->where('id_tipe_akun', '=', '7')->sum('total_pengeluaran');
+        $pengajuan8 = Pengajuan::whereYear('tanggal_mulai', '=', $year)->where('status', '=', 'disetujui')->where('id_tipe_akun', '=', '8')->sum('total_pengeluaran');
+        $pengajuan9 = Pengajuan::whereYear('tanggal_mulai', '=', $year)->where('status', '=', 'disetujui')->where('id_tipe_akun', '=', '9')->sum('total_pengeluaran');
 
         //menghindari zero division
         $div0 = array($pengajuan1, $pengajuan2, $pengajuan3, $pengajuan4, $pengajuan5, $pengajuan6, $pengajuan7, $pengajuan8, $pengajuan9);
@@ -59,55 +64,55 @@ class HomeController extends Controller
         $pengajuan8 = $div0[7];
         $pengajuan9 = $div0[8];
 
-        $realisasi1 = Realisasi::whereYear('created_at', '=', $year)
+        $realisasi1 = Realisasi::whereIn('id_pengajuan', $arr_pengid)
         ->where('status_real', '=', 'disetujui')
         ->whereHas('pengajuan', function ($query){
             $query->where('id_tipe_akun', '=', '1');
         })->sum('total_pengeluaran_real');
 
-        $realisasi2 = Realisasi::whereYear('created_at', '=', $year)
+        $realisasi2 = Realisasi::whereIn('id_pengajuan', $arr_pengid)
         ->where('status_real', '=', 'disetujui')
         ->whereHas('pengajuan', function ($query){
             $query->where('id_tipe_akun', '=', '2');
         })->sum('total_pengeluaran_real');
         
-        $realisasi3 = Realisasi::whereYear('created_at', '=', $year)
+        $realisasi3 = Realisasi::whereIn('id_pengajuan', $arr_pengid)
         ->where('status_real', '=', 'disetujui')
         ->whereHas('pengajuan', function ($query){
             $query->where('id_tipe_akun', '=', '3');
         })->sum('total_pengeluaran_real');
         
-        $realisasi4 = Realisasi::whereYear('created_at', '=', $year)
+        $realisasi4 = Realisasi::whereIn('id_pengajuan', $arr_pengid)
         ->where('status_real', '=', 'disetujui')
         ->whereHas('pengajuan', function ($query){
             $query->where('id_tipe_akun', '=', '4');
         })->sum('total_pengeluaran_real');
         
-        $realisasi5 = Realisasi::whereYear('created_at', '=', $year)
+        $realisasi5 = Realisasi::whereIn('id_pengajuan', $arr_pengid)
         ->where('status_real', '=', 'disetujui')
         ->whereHas('pengajuan', function ($query){
             $query->where('id_tipe_akun', '=', '5');
         })->sum('total_pengeluaran_real');
         
-        $realisasi6 = Realisasi::whereYear('created_at', '=', $year)
+        $realisasi6 = Realisasi::whereIn('id_pengajuan', $arr_pengid)
         ->where('status_real', '=', 'disetujui')
         ->whereHas('pengajuan', function ($query){
             $query->where('id_tipe_akun', '=', '6');
         })->sum('total_pengeluaran_real');
         
-        $realisasi7 = Realisasi::whereYear('created_at', '=', $year)
+        $realisasi7 = Realisasi::whereIn('id_pengajuan', $arr_pengid)
         ->where('status_real', '=', 'disetujui')
         ->whereHas('pengajuan', function ($query){
             $query->where('id_tipe_akun', '=', '7');
         })->sum('total_pengeluaran_real');
         
-        $realisasi8 = Realisasi::whereYear('created_at', '=', $year)
+        $realisasi8 = Realisasi::whereIn('id_pengajuan', $arr_pengid)
         ->where('status_real', '=', 'disetujui')
         ->whereHas('pengajuan', function ($query){
             $query->where('id_tipe_akun', '=', '8');
         })->sum('total_pengeluaran_real');
         
-        $realisasi9 = Realisasi::whereYear('created_at', '=', $year)
+        $realisasi9 = Realisasi::whereIn('id_pengajuan', $arr_pengid)
         ->where('status_real', '=', 'disetujui')
         ->whereHas('pengajuan', function ($query){
             $query->where('id_tipe_akun', '=', '9');
