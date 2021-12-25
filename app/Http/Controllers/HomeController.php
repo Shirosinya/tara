@@ -26,10 +26,15 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request) //optional parameter for yearpicker
     {
         $user = Auth::user();
-        $year = date('Y');
+        if (is_null($request->yearpicker)) {
+            $year = date('Y');
+        }else{
+            $year = $request->yearpicker;
+        }
+        // dd($year);
         $arr_pengid = array(); //untuk menampung id filtered by year
         $peng_ids = Pengajuan::whereYear('tanggal_mulai', '=', $year)->where('status', '=', 'disetujui')->get();
         foreach($peng_ids as $peng_id){

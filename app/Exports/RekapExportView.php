@@ -8,16 +8,24 @@ use Maatwebsite\Excel\Concerns\FromView;
 use App\Models\Pengajuan;
 use App\Models\TipeAkun;
 use App\Models\Realisasi;
+use Illuminate\Http\Request;
 
 
 class RekapExportView implements FromView
 {
+
+    protected $year;
+
+    public function __construct($year = null)
+    {
+        $this->year = $year;
+    }
     /**
     * @return \Illuminate\Support\Collection
     */
     public function view(): View
     {
-        $year = date("Y");
+        $year = $this->year;
         $data = TipeAkun::all();
         $data_peng = Pengajuan::whereYear('tanggal_mulai', '=', $year)->where('status', '=', 'disetujui')->get();
         $dp_id = array();

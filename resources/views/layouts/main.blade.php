@@ -16,7 +16,8 @@
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM STYLES -->
     <link href="../../plugins/dropzone/dropzone.min.css" rel="stylesheet" type="text/css" />
     <link href="../../assets/css/accounting-dashboard/style.css" rel="stylesheet" type="text/css" />
-    <link href="../../plugins/charts/c3charts/c3.min.css" rel="stylesheet" type="text/css" />    
+    <link href="../../plugins/charts/c3charts/c3.min.css" rel="stylesheet" type="text/css" /> 
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css" rel="stylesheet"/>   
     <!-- END PAGE LEVEL PLUGINS/CUSTOM STYLES -->
 
     <!-- BEGIN PAGE LEVEL STYLES -->
@@ -128,7 +129,6 @@
                         <a href="index.html" class="nav-link"> TARA </a>
                     </li>
                 </ul>
-
                 <ul class="list-unstyled menu-categories" id="accordionExample">
                     <li class="menu">
                         <a href="/" class="dropdown-toggle">
@@ -144,6 +144,9 @@
                             <div class="">
                                 <i class="flaticon-cart-2"></i>
                                 <span>Anggaran</span>
+                                    @if(Auth::user()->badge_menu(Auth::user()->role_id) != 0)
+                                        <span class='badge rounded-pill bg-danger float-end'>{{Auth::user()->badge_menu(Auth::user()->role_id)}}</span>
+                                    @endif
                             </div>
                             <div>
                                 <i class="flaticon-right-arrow"></i>
@@ -151,21 +154,39 @@
                         </a>
                         <ul class="collapse submenu list-unstyled" id="ecommerce" data-parent="#accordionExample">
                             <li>
-                                <a href="/sukucadang"> Suku Cadang </a>
+                                <a href="/sukucadang">
+                                     Suku Cadang 
+                                     @if(Auth::user()->badge_notif(Auth::user()->role_id, 1) != 0)
+                                        <span class='badge rounded-pill bg-danger float-end'>{{Auth::user()->badge_notif(Auth::user()->role_id, 1)}}</span>
+                                     @endif
+                                </a>
                             </li>
                             <li>
                                 <a href="#jasa" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"  data-parent="#ecommerce"> Jasa <i class="flaticon-right-arrow"></i> </a>
                                 <ul class="collapse list-unstyled sub-submenu" id="jasa">
                                     <li>
-                                        <a href="/jasakonsultan"> Jasa Konsultan </a>
+                                        <a href="/jasakonsultan"> 
+                                            Jasa Konsultan 
+                                            @if(Auth::user()->badge_notif(Auth::user()->role_id, 2) != 0)
+                                                <span class='badge rounded-pill bg-danger float-end'>{{Auth::user()->badge_notif(Auth::user()->role_id, 2)}}</span>
+                                            @endif
+                                        </a>
                                     </li>
                                     <li>
-                                        <a href="/jasaaudit"> Jasa Audit </a>
+                                        <a href="/jasaaudit"> 
+                                            Jasa Audit 
+                                            @if(Auth::user()->badge_notif(Auth::user()->role_id, 3) != 0)
+                                                <span class='badge rounded-pill bg-danger float-end'>{{Auth::user()->badge_notif(Auth::user()->role_id, 3)}}</span>
+                                            @endif
+                                        </a>
                                     </li>
                                     <li>
-                                        <!-- <div class="col-sm-12"> -->
-                                        <a href="/jasaTKAD" style="margin-left:20px;"> Jasa Tenaga Kerja Alih Daya </a> 
-                                        <!-- </div> -->
+                                        <a href="/jasaTKAD" style="margin-left:20px;"> 
+                                            Jasa Tenaga Kerja Alih Daya 
+                                            @if(Auth::user()->badge_notif(Auth::user()->role_id, 4) != 0)
+                                                <span class='badge rounded-pill bg-danger float-end'>{{Auth::user()->badge_notif(Auth::user()->role_id, 4)}}</span>
+                                            @endif
+                                        </a> 
                                     </li>
                                 </ul>
                             </li>
@@ -173,7 +194,12 @@
                                 <a href="#sewa" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"  data-parent="#ecommerce"> Sewa <i class="flaticon-right-arrow"></i> </a>
                                 <ul class="collapse list-unstyled sub-submenu" id="sewa">
                                     <li>
-                                        <a href="/sewaperalatanpabrikkantor" style="margin-left:30px;"> Peralatan Pabrik & Kantor </a>
+                                        <a href="/sewaperalatanpabrikkantor" style="margin-left:30px;"> 
+                                            Peralatan Pabrik & Kantor 
+                                            @if(Auth::user()->badge_notif(Auth::user()->role_id, 5) != 0)
+                                                <span class='badge rounded-pill bg-danger float-end'>{{Auth::user()->badge_notif(Auth::user()->role_id, 5)}}</span>
+                                            @endif
+                                        </a>
                                     </li>
                                 </ul>
                             </li>
@@ -181,16 +207,36 @@
                                 <a href="#lainnya" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"  data-parent="#ecommerce"> Lainnya <i class="flaticon-right-arrow"></i> </a>
                                 <ul class="collapse list-unstyled sub-submenu" id="lainnya">
                                     <li>
-                                        <a href="/kehumasan"> Kehumasan </a>
+                                        <a href="/kehumasan"> 
+                                            Kehumasan
+                                            @if(Auth::user()->badge_notif(Auth::user()->role_id, 6) != 0)
+                                                <span class='badge rounded-pill bg-danger float-end'>{{Auth::user()->badge_notif(Auth::user()->role_id, 6)}}</span>
+                                            @endif
+                                        </a>
                                     </li>
                                     <li>
-                                        <a href="/inspeksiperijinan"> Inspeksi & Perijinan </a>
+                                        <a href="/inspeksiperijinan"> 
+                                            Inspeksi & Perijinan
+                                            @if(Auth::user()->badge_notif(Auth::user()->role_id, 7) != 0)
+                                                <span class='badge rounded-pill bg-danger float-end'>{{Auth::user()->badge_notif(Auth::user()->role_id, 7)}}</span>
+                                            @endif
+                                        </a>
                                     </li>
                                     <li>
-                                        <a href="/peralatankerja"> Peralatan Kerja </a>
+                                        <a href="/peralatankerja"> 
+                                            Peralatan Kerja
+                                            @if(Auth::user()->badge_notif(Auth::user()->role_id, 8) != 0)
+                                                <span class='badge rounded-pill bg-danger float-end'>{{Auth::user()->badge_notif(Auth::user()->role_id, 8)}}</span>
+                                            @endif
+                                        </a>
                                     </li>
                                     <li>
-                                        <a href="/peralatankantor"> Peralatan Kantor </a>
+                                        <a href="/peralatankantor"> 
+                                            Peralatan Kantor
+                                            @if(Auth::user()->badge_notif(Auth::user()->role_id, 9) != 0)
+                                                <span class='badge rounded-pill bg-danger float-end'>{{Auth::user()->badge_notif(Auth::user()->role_id, 9)}}</span>
+                                            @endif
+                                        </a>
                                     </li>
                                 </ul>
                             </li>
@@ -268,6 +314,7 @@
     <script src="../../assets/js/app.js"></script>
     <script src="../../plugins/blockui/jquery.blockUI.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/loadjs/4.2.0/loadjs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js"></script>
     <script>
         $(document).ready(function() {
             App.init();
@@ -511,5 +558,12 @@
 			return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
 		}
 	</script>
+    <script>
+    $("#yearpicker").datepicker({
+        format: "yyyy",
+        viewMode: "years", 
+        minViewMode: "years"
+    });  
+    </script>
         
     <!-- END PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->

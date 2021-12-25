@@ -25,9 +25,12 @@ Route::group(['middleware' => ['auth']], function ()
     
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('/home/yearpicker={yearpicker}', [App\Http\Controllers\HomeController::class, 'index']);
 
     Route::group(['middleware' => ['role: 1, 2']], function () {
         Route::get('/sukucadang', [App\Http\Controllers\SukuCadangController::class, 'index']);
+        Route::get('/sukucadang/yearpicker={yearpicker}', [App\Http\Controllers\SukuCadangController::class, 'index']);
+        
         Route::post('/sukucadang/mengajukan', [App\Http\Controllers\SukuCadangController::class, 'mengajukan'])->name('mengajukan');
         Route::post('/sukucadang/update{id}/pengajuan', [App\Http\Controllers\SukuCadangController::class, 'updatePengajuan']);
         Route::post('/sukucadang/destroy{id}/pengajuan', [App\Http\Controllers\SukuCadangController::class, 'destroyPengajuan']);
@@ -49,17 +52,31 @@ Route::group(['middleware' => ['auth']], function ()
 
 
         Route::get('/jasakonsultan',[App\Http\Controllers\SukuCadangController::class, 'index2']);
+        Route::get('/jasakonsultan/yearpicker={yearpicker}', [App\Http\Controllers\SukuCadangController::class, 'index2']);
+        
         Route::get('/jasaaudit',[App\Http\Controllers\SukuCadangController::class, 'index3']);
+        Route::get('/jasaaudit/yearpicker={yearpicker}', [App\Http\Controllers\SukuCadangController::class, 'index3']);
+
         Route::get('/jasaTKAD',[App\Http\Controllers\SukuCadangController::class, 'index4']);
+        Route::get('/jasaTKAD/yearpicker={yearpicker}', [App\Http\Controllers\SukuCadangController::class, 'index5']);
         
         Route::get('/sewaperalatanpabrikkantor',[App\Http\Controllers\SukuCadangController::class, 'index5']);
+        Route::get('/sewaperalatanpabrikkantor/yearpicker={yearpicker}', [App\Http\Controllers\SukuCadangController::class, 'index5']);
+
         Route::get('/kehumasan',[App\Http\Controllers\SukuCadangController::class, 'index6']);
+        Route::get('/kehumasan/yearpicker={yearpicker}', [App\Http\Controllers\SukuCadangController::class, 'index6']);
+
         Route::get('/inspeksiperijinan',[App\Http\Controllers\SukuCadangController::class, 'index7']);
+        Route::get('/inspeksiperijinan/yearpicker={yearpicker}', [App\Http\Controllers\SukuCadangController::class, 'index7']);
+
         Route::get('/peralatankerja',[App\Http\Controllers\SukuCadangController::class, 'index8']);
+        Route::get('/peralatankerja/yearpicker={yearpicker}', [App\Http\Controllers\SukuCadangController::class, 'index8']);
+
         Route::get('/peralatankantor',[App\Http\Controllers\SukuCadangController::class, 'index9']);
+        Route::get('/peralatankantor/yearpicker={yearpicker}', [App\Http\Controllers\SukuCadangController::class, 'index9']);
     });
 
-    Route::get('/rekap-export',[App\Http\Controllers\RekapController::class, 'exportExcelView']);
+    Route::get('/rekap-export/yearpicker={yearpicker}',[App\Http\Controllers\RekapController::class, 'exportExcelView']);
     Route::get('/rekap',[App\Http\Controllers\RekapController::class, 'templateExport']);
     
 });

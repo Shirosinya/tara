@@ -18,6 +18,21 @@
                 </div>
             </div>
         </div>
+        
+        <div class="row">
+            <div class="col-md-2">
+                <div class="form-group">
+                    <input class="form-control" name="yearpicker" type="text" id="yearpicker" value="{{$year}}"/>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <input type="button" class="btn btn-info btn-sm" placeholder="Submit" value = "filter"
+                        onClick="javascript: window.location.href = '/jasakonsultan/yearpicker=' + document.getElementById('yearpicker').value;">
+                </div>
+            </div>
+        </div>
+
         <div class="row">
         <div class="col-xl-12 col-lg-12 col-12 layout-spacing">
             <div class="statbox widget box box-shadow">

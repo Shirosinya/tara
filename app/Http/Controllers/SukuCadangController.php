@@ -16,23 +16,29 @@ class SukuCadangController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index(Request $request)
+    { 
+        if (is_null($request->yearpicker)) {
+            $year = date('Y');
+        }else{
+            $year = $request->yearpicker;
+        }
+
         $user = Auth::user();
         $tipe_id = '1';
         $tipeakun = TipeAkun::where('id', '=', $tipe_id)->first();
-        $pengajuans = Pengajuan::where('id_tipe_akun', '=', $tipe_id)->get();
+        $pengajuans = Pengajuan::whereYear('tanggal_mulai', '=', $year)->where('id_tipe_akun', '=', $tipe_id)->get();
         if($user->id == 1){
-            $realisasis = Realisasi::whereHas('pengajuan', function ($query) use ($tipe_id){
-                $query->where('id_tipe_akun', '=', $tipe_id);
+            $realisasis = Realisasi::whereHas('pengajuan', function ($query) use ($tipe_id, $year){
+                $query->whereYear('tanggal_mulai', '=', $year)->where('id_tipe_akun', '=', $tipe_id);
             })->get();
         }else{
-            $realisasis = Realisasi::where('diajukan', '=', 'yes')->whereHas('pengajuan', function ($query) use ($tipe_id){
-                $query->where('id_tipe_akun', '=', $tipe_id);
+            $realisasis = Realisasi::where('diajukan', '=', 'yes')->whereHas('pengajuan', function ($query) use ($tipe_id, $year){
+                $query->whereYear('tanggal_mulai', '=', $year)->where('id_tipe_akun', '=', $tipe_id);
             })->get();
         }
         
-        return view('suku_cadang', compact('pengajuans','user','realisasis', 'tipeakun'));
+        return view('suku_cadang', compact('pengajuans','user','realisasis', 'tipeakun', 'year'));
     }
 
     /**
@@ -211,155 +217,195 @@ class SukuCadangController extends Controller
     }
 
     //INDEX AKUN JASA - LAIN2
-    public function index2()
+    public function index2(Request $request)
     {
+        if (is_null($request->yearpicker)) {
+            $year = date('Y');
+        }else{
+            $year = $request->yearpicker;
+        }
         $user = Auth::user();
         $tipe_id = '2';
         $tipeakun = TipeAkun::where('id', '=', $tipe_id)->first();
-        $pengajuans = Pengajuan::where('id_tipe_akun', '=', $tipe_id)->get();
+        $pengajuans = Pengajuan::whereYear('tanggal_mulai', '=', $year)->where('id_tipe_akun', '=', $tipe_id)->get();
         if($user->id == 1){
-            $realisasis = Realisasi::whereHas('pengajuan', function ($query) use ($tipe_id){
-                $query->where('id_tipe_akun', '=', $tipe_id);
+            $realisasis = Realisasi::whereHas('pengajuan', function ($query) use ($tipe_id, $year){
+                $query->whereYear('tanggal_mulai', '=', $year)->where('id_tipe_akun', '=', $tipe_id);
             })->get();
         }else{
-            $realisasis = Realisasi::where('diajukan', '=', 'yes')->whereHas('pengajuan', function ($query) use ($tipe_id){
-                $query->where('id_tipe_akun', '=', $tipe_id);
+            $realisasis = Realisasi::where('diajukan', '=', 'yes')->whereHas('pengajuan', function ($query) use ($tipe_id, $year){
+                $query->whereYear('tanggal_mulai', '=', $year)->where('id_tipe_akun', '=', $tipe_id);
             })->get();
         }
         
-        return view('jasa_konsultan', compact('pengajuans','user','realisasis', 'tipeakun'));
+        return view('jasa_konsultan', compact('pengajuans','user','realisasis', 'tipeakun', 'year'));
     }
     
-    public function index3()
+    public function index3(Request $request)
     {
+        if (is_null($request->yearpicker)) {
+            $year = date('Y');
+        }else{
+            $year = $request->yearpicker;
+        }
         $user = Auth::user();
         $tipe_id = '3';
         $tipeakun = TipeAkun::where('id', '=', $tipe_id)->first();
-        $pengajuans = Pengajuan::where('id_tipe_akun', '=', $tipe_id)->get();
+        $pengajuans = Pengajuan::whereYear('tanggal_mulai', '=', $year)->where('id_tipe_akun', '=', $tipe_id)->get();
         if($user->id == 1){
-            $realisasis = Realisasi::whereHas('pengajuan', function ($query) use ($tipe_id){
-                $query->where('id_tipe_akun', '=', $tipe_id);
+            $realisasis = Realisasi::whereHas('pengajuan', function ($query) use ($tipe_id, $year){
+                $query->whereYear('tanggal_mulai', '=', $year)->where('id_tipe_akun', '=', $tipe_id);
             })->get();
         }else{
-            $realisasis = Realisasi::where('diajukan', '=', 'yes')->whereHas('pengajuan', function ($query) use ($tipe_id){
-                $query->where('id_tipe_akun', '=', $tipe_id);
+            $realisasis = Realisasi::where('diajukan', '=', 'yes')->whereHas('pengajuan', function ($query) use ($tipe_id, $year){
+                $query->whereYear('tanggal_mulai', '=', $year)->where('id_tipe_akun', '=', $tipe_id);
             })->get();
         }
         
-        return view('jasa_audit', compact('pengajuans','user','realisasis', 'tipeakun'));
+        return view('jasa_audit', compact('pengajuans','user','realisasis', 'tipeakun', 'year'));
     }
     
-    public function index4()
+    public function index4(Request $request)
     {
+        if (is_null($request->yearpicker)) {
+            $year = date('Y');
+        }else{
+            $year = $request->yearpicker;
+        }
         $user = Auth::user();
         $tipe_id = '4';
         $tipeakun = TipeAkun::where('id', '=', $tipe_id)->first();
-        $pengajuans = Pengajuan::where('id_tipe_akun', '=', $tipe_id)->get();
+        $pengajuans = Pengajuan::whereYear('tanggal_mulai', '=', $year)->where('id_tipe_akun', '=', $tipe_id)->get();
         if($user->id == 1){
-            $realisasis = Realisasi::whereHas('pengajuan', function ($query) use ($tipe_id){
-                $query->where('id_tipe_akun', '=', $tipe_id);
+            $realisasis = Realisasi::whereHas('pengajuan', function ($query) use ($tipe_id, $year){
+                $query->whereYear('tanggal_mulai', '=', $year)->where('id_tipe_akun', '=', $tipe_id);
             })->get();
         }else{
-            $realisasis = Realisasi::where('diajukan', '=', 'yes')->whereHas('pengajuan', function ($query) use ($tipe_id){
-                $query->where('id_tipe_akun', '=', $tipe_id);
+            $realisasis = Realisasi::where('diajukan', '=', 'yes')->whereHas('pengajuan', function ($query) use ($tipe_id, $year){
+                $query->whereYear('tanggal_mulai', '=', $year)->where('id_tipe_akun', '=', $tipe_id);
             })->get();
         }
         
-        return view('jasa_TKAD', compact('pengajuans','user','realisasis', 'tipeakun'));
+        return view('jasa_TKAD', compact('pengajuans','user','realisasis', 'tipeakun', 'year'));
     }
     
-    public function index5()
+    public function index5(Request $request)
     {
+        if (is_null($request->yearpicker)) {
+            $year = date('Y');
+        }else{
+            $year = $request->yearpicker;
+        }
         $user = Auth::user();
         $tipe_id = '5';
         $tipeakun = TipeAkun::where('id', '=', $tipe_id)->first();
-        $pengajuans = Pengajuan::where('id_tipe_akun', '=', $tipe_id)->get();
+        $pengajuans = Pengajuan::whereYear('tanggal_mulai', '=', $year)->where('id_tipe_akun', '=', $tipe_id)->get();
         if($user->id == 1){
-            $realisasis = Realisasi::whereHas('pengajuan', function ($query) use ($tipe_id){
-                $query->where('id_tipe_akun', '=', $tipe_id);
+            $realisasis = Realisasi::whereHas('pengajuan', function ($query) use ($tipe_id, $year){
+                $query->whereYear('tanggal_mulai', '=', $year)->where('id_tipe_akun', '=', $tipe_id);
             })->get();
         }else{
-            $realisasis = Realisasi::where('diajukan', '=', 'yes')->whereHas('pengajuan', function ($query) use ($tipe_id){
-                $query->where('id_tipe_akun', '=', $tipe_id);
+            $realisasis = Realisasi::where('diajukan', '=', 'yes')->whereHas('pengajuan', function ($query) use ($tipe_id, $year){
+                $query->whereYear('tanggal_mulai', '=', $year)->where('id_tipe_akun', '=', $tipe_id);
             })->get();
         }
         
-        return view('sewa_peralatanpabrikkantor', compact('pengajuans','user','realisasis', 'tipeakun'));
+        return view('sewa_peralatanpabrikkantor', compact('pengajuans','user','realisasis', 'tipeakun', 'year'));
     }
     
-    public function index6()
+    public function index6(Request $request)
     {
+        if (is_null($request->yearpicker)) {
+            $year = date('Y');
+        }else{
+            $year = $request->yearpicker;
+        }
         $user = Auth::user();
         $tipe_id = '6';
         $tipeakun = TipeAkun::where('id', '=', $tipe_id)->first();
-        $pengajuans = Pengajuan::where('id_tipe_akun', '=', $tipe_id)->get();
+        $pengajuans = Pengajuan::whereYear('tanggal_mulai', '=', $year)->where('id_tipe_akun', '=', $tipe_id)->get();
         if($user->id == 1){
-            $realisasis = Realisasi::whereHas('pengajuan', function ($query) use ($tipe_id){
-                $query->where('id_tipe_akun', '=', $tipe_id);
+            $realisasis = Realisasi::whereHas('pengajuan', function ($query) use ($tipe_id, $year){
+                $query->whereYear('tanggal_mulai', '=', $year)->where('id_tipe_akun', '=', $tipe_id);
             })->get();
         }else{
-            $realisasis = Realisasi::where('diajukan', '=', 'yes')->whereHas('pengajuan', function ($query) use ($tipe_id){
-                $query->where('id_tipe_akun', '=', $tipe_id);
+            $realisasis = Realisasi::where('diajukan', '=', 'yes')->whereHas('pengajuan', function ($query) use ($tipe_id, $year){
+                $query->whereYear('tanggal_mulai', '=', $year)->where('id_tipe_akun', '=', $tipe_id);
             })->get();
         }
         
-        return view('kehumasan', compact('pengajuans','user','realisasis', 'tipeakun'));
+        return view('kehumasan', compact('pengajuans','user','realisasis', 'tipeakun', 'year'));
     }
     
-    public function index7()
+    public function index7(Request $request)
     {
+        if (is_null($request->yearpicker)) {
+            $year = date('Y');
+        }else{
+            $year = $request->yearpicker;
+        }
         $user = Auth::user();
         $tipe_id = '7';
         $tipeakun = TipeAkun::where('id', '=', $tipe_id)->first();
-        $pengajuans = Pengajuan::where('id_tipe_akun', '=', $tipe_id)->get();
+        $pengajuans = Pengajuan::whereYear('tanggal_mulai', '=', $year)->where('id_tipe_akun', '=', $tipe_id)->get();
         if($user->id == 1){
-            $realisasis = Realisasi::whereHas('pengajuan', function ($query) use ($tipe_id){
-                $query->where('id_tipe_akun', '=', $tipe_id);
+            $realisasis = Realisasi::whereHas('pengajuan', function ($query) use ($tipe_id, $year){
+                $query->whereYear('tanggal_mulai', '=', $year)->where('id_tipe_akun', '=', $tipe_id);
             })->get();
         }else{
-            $realisasis = Realisasi::where('diajukan', '=', 'yes')->whereHas('pengajuan', function ($query) use ($tipe_id){
-                $query->where('id_tipe_akun', '=', $tipe_id);
+            $realisasis = Realisasi::where('diajukan', '=', 'yes')->whereHas('pengajuan', function ($query) use ($tipe_id, $year){
+                $query->whereYear('tanggal_mulai', '=', $year)->where('id_tipe_akun', '=', $tipe_id);
             })->get();
         }
         
-        return view('inspeksiperijinan', compact('pengajuans','user','realisasis', 'tipeakun'));
+        return view('inspeksiperijinan', compact('pengajuans','user','realisasis', 'tipeakun', 'year'));
     }
     
-    public function index8()
+    public function index8(Request $request)
     {
+        if (is_null($request->yearpicker)) {
+            $year = date('Y');
+        }else{
+            $year = $request->yearpicker;
+        }
         $user = Auth::user();
         $tipe_id = '8';
         $tipeakun = TipeAkun::where('id', '=', $tipe_id)->first();
-        $pengajuans = Pengajuan::where('id_tipe_akun', '=', $tipe_id)->get();
+        $pengajuans = Pengajuan::whereYear('tanggal_mulai', '=', $year)->where('id_tipe_akun', '=', $tipe_id)->get();
         if($user->id == 1){
-            $realisasis = Realisasi::whereHas('pengajuan', function ($query) use ($tipe_id){
-                $query->where('id_tipe_akun', '=', $tipe_id);
+            $realisasis = Realisasi::whereHas('pengajuan', function ($query) use ($tipe_id, $year){
+                $query->whereYear('tanggal_mulai', '=', $year)->where('id_tipe_akun', '=', $tipe_id);
             })->get();
         }else{
-            $realisasis = Realisasi::where('diajukan', '=', 'yes')->whereHas('pengajuan', function ($query) use ($tipe_id){
-                $query->where('id_tipe_akun', '=', $tipe_id);
+            $realisasis = Realisasi::where('diajukan', '=', 'yes')->whereHas('pengajuan', function ($query) use ($tipe_id, $year){
+                $query->whereYear('tanggal_mulai', '=', $year)->where('id_tipe_akun', '=', $tipe_id);
             })->get();
         }
         
-        return view('peralatankerja', compact('pengajuans','user','realisasis', 'tipeakun'));
+        return view('peralatankerja', compact('pengajuans','user','realisasis', 'tipeakun', 'year'));
     }
     
-    public function index9()
+    public function index9(Request $request)
     {
+        if (is_null($request->yearpicker)) {
+            $year = date('Y');
+        }else{
+            $year = $request->yearpicker;
+        }
         $user = Auth::user();
         $tipe_id = '9';
         $tipeakun = TipeAkun::where('id', '=', $tipe_id)->first();
-        $pengajuans = Pengajuan::where('id_tipe_akun', '=', $tipe_id)->get();
+        $pengajuans = Pengajuan::whereYear('tanggal_mulai', '=', $year)->where('id_tipe_akun', '=', $tipe_id)->get();
         if($user->id == 1){
-            $realisasis = Realisasi::whereHas('pengajuan', function ($query) use ($tipe_id){
-                $query->where('id_tipe_akun', '=', $tipe_id);
+            $realisasis = Realisasi::whereHas('pengajuan', function ($query) use ($tipe_id, $year){
+                $query->whereYear('tanggal_mulai', '=', $year)->where('id_tipe_akun', '=', $tipe_id);
             })->get();
         }else{
-            $realisasis = Realisasi::where('diajukan', '=', 'yes')->whereHas('pengajuan', function ($query) use ($tipe_id){
-                $query->where('id_tipe_akun', '=', $tipe_id);
+            $realisasis = Realisasi::where('diajukan', '=', 'yes')->whereHas('pengajuan', function ($query) use ($tipe_id, $year){
+                $query->whereYear('tanggal_mulai', '=', $year)->where('id_tipe_akun', '=', $tipe_id);
             })->get();
         }
         
-        return view('peralatankantor', compact('pengajuans','user','realisasis', 'tipeakun'));
+        return view('peralatankantor', compact('pengajuans','user','realisasis', 'tipeakun', 'year'));
     }
 }

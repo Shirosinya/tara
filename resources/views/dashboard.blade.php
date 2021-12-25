@@ -10,7 +10,21 @@
                         <h3>Anggaran Departemen Keamanan {{$year}}</h3>
                     </div>
                 </div>
-                <a href="/rekap-export"><button class="btn btn-primary mb-3"><i class="flaticon-document-3"></i> Export Excel</button></a>
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <input class="form-control" name="yearpicker" type="text" id="yearpicker" value="{{$year}}"/>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <input type="button" class="btn btn-info btn-sm" placeholder="Submit" value = "filter"
+                             onClick="javascript: window.location.href = '/home/yearpicker=' + document.getElementById('yearpicker').value;">
+                        </div>
+                    </div>
+                </div>
+                
+                <a onClick="javascript: window.location.href = '/rekap-export/yearpicker=' + document.getElementById('yearpicker').value;"><button class="btn btn-primary mb-3"><i class="flaticon-document-3"></i> Export Excel</button></a>
                 <div class="row layout-spacing accounts-widgets">
                     <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12 mb-xl-0 mb-4">
                         <div class="widget-content widget-content-area br-4 accounts-{{($realisasi1/$pengajuan1*100) <= 25 ? 'income' : (($realisasi1/$pengajuan1*100) <= 50 ? 'cogs' : (($realisasi1/$pengajuan1*100) <= 75 ? 'profit' : 'expenses'))}}">
