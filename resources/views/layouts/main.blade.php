@@ -144,8 +144,8 @@
                             <div class="">
                                 <i class="flaticon-cart-2"></i>
                                 <span>Anggaran</span>
-                                    @if(Auth::user()->badge_menu(Auth::user()->role_id) != 0)
-                                        <span class='badge rounded-pill bg-danger float-end'>{{Auth::user()->badge_menu(Auth::user()->role_id)}}</span>
+                                    @if(Auth::user()->badge_notif(Auth::user()->role_id,null) != 0)
+                                        <span class='badge rounded-pill bg-danger float-end'>{{Auth::user()->badge_notif(Auth::user()->role_id, null)}}</span>
                                     @endif
                             </div>
                             <div>
@@ -162,7 +162,12 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="#jasa" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"  data-parent="#ecommerce"> Jasa <i class="flaticon-right-arrow"></i> </a>
+                                <a href="#jasa" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"  data-parent="#ecommerce">
+                                     Jasa 
+                                     @if(Auth::user()->badge_notif(Auth::user()->role_id, 1) != 0 && Auth::user()->badge_notif(Auth::user()->role_id, 2) != 0)
+                                        <span class='badge rounded-pill bg-danger float-end'>...</span>
+                                     @endif
+                                     <i class="flaticon-right-arrow"></i> </a>
                                 <ul class="collapse list-unstyled sub-submenu" id="jasa">
                                     <li>
                                         <a href="/jasakonsultan"> 
@@ -191,7 +196,12 @@
                                 </ul>
                             </li>
                             <li>
-                                <a href="#sewa" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"  data-parent="#ecommerce"> Sewa <i class="flaticon-right-arrow"></i> </a>
+                                <a href="#sewa" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"  data-parent="#ecommerce"> 
+                                    Sewa 
+                                     @if(Auth::user()->badge_notif(Auth::user()->role_id, 5) != 0)
+                                        <span class='badge rounded-pill bg-danger float-end'>...</span>
+                                     @endif
+                                    <i class="flaticon-right-arrow"></i> </a>
                                 <ul class="collapse list-unstyled sub-submenu" id="sewa">
                                     <li>
                                         <a href="/sewaperalatanpabrikkantor" style="margin-left:30px;"> 
@@ -204,7 +214,12 @@
                                 </ul>
                             </li>
                             <li>
-                                <a href="#lainnya" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"  data-parent="#ecommerce"> Lainnya <i class="flaticon-right-arrow"></i> </a>
+                                <a href="#lainnya" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"  data-parent="#ecommerce"> 
+                                    Lainnya 
+                                     @if(Auth::user()->badge_notif(Auth::user()->role_id, 6) != 0 && Auth::user()->badge_notif(Auth::user()->role_id, 7) != 0 && Auth::user()->badge_notif(Auth::user()->role_id, 8) != 0 && Auth::user()->badge_notif(Auth::user()->role_id, 9) != 0)
+                                        <span class='badge rounded-pill bg-danger float-end'>...</span>
+                                     @endif
+                                    <i class="flaticon-right-arrow"></i> </a>
                                 <ul class="collapse list-unstyled sub-submenu" id="lainnya">
                                     <li>
                                         <a href="/kehumasan"> 

@@ -47,22 +47,18 @@ class User extends Authenticatable
     ];
 
     public static function badge_notif($role_id, $id_tipe_akun){
-        if ($role_id == '2') { 
+        if ($role_id == '2' && isset($id_tipe_akun)) { 
             $data_peng = Pengajuan::where('status', '=', 'pending')->where('id_tipe_akun', $id_tipe_akun)->count();
             $data_real = Realisasi::where('status_real', '=', 'pending')->where('diajukan', '=', 'yes')->whereHas('pengajuan', function ($query) use ($id_tipe_akun){
                 $query->where('id_tipe_akun', '=', $id_tipe_akun);
             })->count();
             $data = $data_peng + $data_real;
-        return $data;
-        }
-    }
-
-    public static function badge_menu($role_id){
-        if ($role_id == '2') { 
+            return $data;
+        }elseif($role_id == '2'){
             $data_peng = Pengajuan::where('status', '=', 'pending')->count();
             $data_real = Realisasi::where('status_real', '=', 'pending')->where('diajukan', '=', 'yes')->count();
             $data = $data_peng + $data_real;
-        return $data;
+            return $data;
         }
     }
 
