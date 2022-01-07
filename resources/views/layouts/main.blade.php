@@ -309,7 +309,7 @@
                 <div class="col-md-12">
                     <ul class="list-inline mb-0 d-flex justify-content-sm-end justify-content-center mr-sm-3 ml-sm-0 mx-3">
                         <li class="list-inline-item  mr-3">
-                            <p class="bottom-footer" style="text-align:center;">&#xA9; 2019 Departemen Kemananan Petrokimia Gresik</p>
+                            <p class="bottom-footer" style="text-align:center;">&#xA9; <?php echo date('Y'); ?> Departemen Keamanan Petrokimia Gresik</p>
                         </li>
                         <li class="list-inline-item align-self-center">
                             <div class="scrollTop"><i class="flaticon-up-arrow-fill-1"></i></div>
