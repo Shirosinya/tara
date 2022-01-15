@@ -20,6 +20,10 @@ use App\Http\Controllers;
 
 Auth::routes();
 
+Route::get('/storage-link', function () {
+    Artisan::call('storage:link');
+});
+
 Route::group(['middleware' => ['auth']], function () 
 {
     
